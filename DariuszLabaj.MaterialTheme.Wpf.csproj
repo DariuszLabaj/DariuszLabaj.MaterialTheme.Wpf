@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<LangVersion>latestMajor</LangVersion>
+	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+</Project>
