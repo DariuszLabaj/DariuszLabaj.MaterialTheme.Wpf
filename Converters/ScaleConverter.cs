@@ -5,7 +5,7 @@ using System.Windows.Markup;
 
 namespace DariuszLabaj.MaterialTheme.Wpf.Converters
 {
-    internal class ScaleConverter : MarkupExtension, IValueConverter
+    public class ScaleConverter : MarkupExtension, IValueConverter
     {
         private readonly double _scale;
         public ScaleConverter(double scale)

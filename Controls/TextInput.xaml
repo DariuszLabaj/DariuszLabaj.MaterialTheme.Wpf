@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:DariuszLabaj.MaterialTheme.Wpf.Converters"
-             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-             xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
              xmlns:local="clr-namespace:DariuszLabaj.MaterialTheme.Wpf.Controls"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:ei="clr-namespace:Microsoft.Xaml.Behaviors.Core;assembly=Microsoft.Xaml.Behaviors"
+             xmlns:behaviors="clr-namespace:DariuszLabaj.MaterialTheme.Wpf.Behaviors"
              d:Background="White"
              d:Foreground="Red"
              mc:Ignorable="d">
@@ -68,7 +69,6 @@
                     </TextBlock>
                 </Canvas>
                 <Button Grid.Column="1" x:Name="button" 
-                        Click="Button_Click"
                         Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=UserControl}}"
                         Padding="0" Focusable="False" IsTabStop="False">
                     <Button.Content>
@@ -76,6 +76,9 @@
                             <Path Margin="-5 -5 0 0" Data="{StaticResource md.icon.close}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
                         </Viewbox>
                     </Button.Content>
+                    <i:Interaction.Behaviors>
+                        <behaviors:ClearTextBehavior Target="{Binding ElementName=TextBoxField}"/>
+                    </i:Interaction.Behaviors>
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Visibility" Value="Visible"/>

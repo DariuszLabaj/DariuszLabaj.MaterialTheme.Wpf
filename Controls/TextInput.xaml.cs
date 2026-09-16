@@ -148,10 +148,5 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
             storyboard.Children.Add(scaleXAnimation);
             storyboard.Children.Add(scaleYAnimation);
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            TextBoxField.Text = "";
-            TextBox_LostFocus(sender, e);
-        }
     }
 }

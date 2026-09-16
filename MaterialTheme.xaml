@@ -2,10 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:md="clr-namespace:DariuszLabaj.MaterialTheme.Wpf.Controls">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Typography.xaml"/>
-        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Dimensions.xaml"/>
-        
         <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Icons/MaterialIcons.xaml"/>
+        
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Dimensions.xaml"/>
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Typography.xaml"/>
         
         <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Palettes/neutral.xaml"/>
         <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Schemes/light.xaml"/>

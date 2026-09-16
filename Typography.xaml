@@ -2,6 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:DariuszLabaj.MaterialTheme.Wpf.Converters"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Icons/MaterialIcons.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
     <FontFamily x:Key="md.ref.typeface.brand">pack://application:,,,/Assets/Fonts/Roboto-VariableFont_wdth,wght.ttf</FontFamily>
     <FontFamily x:Key="md.ref.typeface.plain">pack://application:,,,/Assets/Fonts/Roboto-VariableFont_wdth,wght.ttf</FontFamily>
     <FontFamily x:Key="md.ref.typeface.weight-bold">pack://application:,,,/Assets/Fonts/Roboto-VariableFont_wdth,wght.ttf</FontFamily>
