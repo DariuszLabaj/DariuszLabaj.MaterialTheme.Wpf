@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="md.DataGridColumnHeader" TargetType="DataGridColumnHeader">
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Background" Value="{DynamicResource surfaceVariantBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onSurfaceBrush}"/>
+    </Style>
+    <Style x:Key="md.DataGridCell" TargetType="DataGridCell">
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Padding" Value="6"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-medium-size}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource onSurfaceBrush}"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+    <Style x:Key="md.DataGrid" TargetType="DataGrid">
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Background" Value="{DynamicResource surfaceBrush}"/>
+        <Setter Property="RowBackground" Value="{DynamicResource surfaceBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onSurfaceBrush}"/>
+        <Setter Property="AlternatingRowBackground" Value="{DynamicResource surfaceVariantBrush}"/>
+        <Setter Property="GridLinesVisibility" Value="None"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource outlineBrush}"/>
+        <Setter Property="IsReadOnly" Value="False"/>
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Setter Property="SelectionUnit" Value="FullRow"/>
+        <Setter Property="CanUserAddRows" Value="True"/>
+        <Setter Property="RowHeaderWidth" Value="0"/>
+        <Setter Property="CanUserDeleteRows" Value="True"/>
+        <Setter Property="ColumnHeaderHeight" Value="{DynamicResource md.sys.typescale.body-medium-line-height}"/>
+        <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Padding" Value="6"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-medium-size}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Style.Resources>
+            <Style TargetType="DataGridCell" BasedOn="{StaticResource md.DataGridCell}"/>
+            <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource md.DataGridColumnHeader}"/>
+        </Style.Resources>
+    </Style>
+
+</ResourceDictionary>

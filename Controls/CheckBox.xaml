@@ -1,0 +1,92 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:converters="clr-namespace:DariuszLabaj.MaterialTheme.Wpf.Converters"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- ========================================================= -->
+    <!-- CheckBox -->
+    <!-- ========================================================= -->
+
+    <ControlTemplate x:Key="md.sys.CheckBox.ControlTemplate" TargetType="CheckBox">
+        <Grid x:Name="RootGrid" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{TemplateBinding Height}"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Border x:Name="StateLayer" Background="{DynamicResource 80Brush}" CornerRadius="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}, Converter={converters:ScaleConverter 0.5}}" Opacity="0"/>
+                <Border x:Name="CheckContainer" Margin="2" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid>
+                        <ContentControl x:Name="CheckedIcon" Foreground="{TemplateBinding BorderBrush}" Opacity="0">
+                            <Viewbox>
+                                <Canvas Width="960" Height="960">
+                                    <Path Stroke="Black" StrokeThickness="1" Fill="{Binding RelativeSource={RelativeSource AncestorType=ContentControl}, Path=Foreground}" Data="m419-407-98-98q-9-9-21-9t-21 9q-9 9-9 21.5t9 21.5l119 120q9 9 21 9t21-9l247-248q9-9 9-21t-9-21q-9-9-21.5-9t-21.5 9L419-407ZM180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h600q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Z">
+                                        <Path.RenderTransform>
+                                            <TransformGroup>
+                                                <TranslateTransform X="-0" Y="960" />
+                                            </TransformGroup>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </Canvas>
+                            </Viewbox>
+                        </ContentControl>
+                        <ContentControl x:Name="UncheckedIcon" Foreground="{TemplateBinding BorderBrush}" Opacity="1">
+                            <Viewbox>
+                                <Canvas Width="960" Height="960">
+                                    <Path Stroke="Black" StrokeThickness="1" Fill="{Binding RelativeSource={RelativeSource AncestorType=ContentControl}, Path=Foreground}" Data="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h600q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm0-60h600v-600H180v600Z">
+                                        <Path.RenderTransform>
+                                            <TransformGroup>
+                                                <TranslateTransform X="-0" Y="960" />
+                                            </TransformGroup>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </Canvas>
+                            </Viewbox>
+                        </ContentControl>
+                    </Grid>
+                </Border>
+            </Grid>
+            <TextBlock Text="{TemplateBinding Content}" Padding="{TemplateBinding Padding}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" FontStyle="{TemplateBinding FontStyle}" FontStretch="{TemplateBinding FontStretch}" Foreground="{TemplateBinding Foreground}" Background="{TemplateBinding Background}"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <!-- Hover -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="StateLayer" Property="Opacity" Value="0.08"/>
+            </Trigger>
+
+            <!-- Pressed -->
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="StateLayer" Property="Opacity" Value="0.12"/>
+            </Trigger>
+
+            <!-- Checked -->
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="CheckedIcon" Property="Opacity" Value="1"/>
+                <Setter TargetName="UncheckedIcon" Property="Opacity" Value="0"/>
+            </Trigger>
+
+            <!-- Indeterminate -->
+            <Trigger Property="IsChecked" Value="{x:Null}">
+                <Setter TargetName="CheckedIcon" Property="Opacity" Value="1"/>
+                <Setter TargetName="UncheckedIcon" Property="Opacity" Value="0"/>
+            </Trigger>
+
+            <!-- Disabled -->
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.38"/>
+                <Setter TargetName="StateLayer" Property="Opacity" Value="0"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="md.checkbox" TargetType="CheckBox">
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Padding" Value="0 4 0 0"/>
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-medium-size}"/>
+        <Setter Property="Height" Value="{DynamicResource md.sys.typescale.body-medium-line-height}"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.CheckBox.ControlTemplate}"/>
+        <Setter Property="Margin" Value="4"/>
+    </Style>
+    
+</ResourceDictionary>

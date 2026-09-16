@@ -1,0 +1,39 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="0">#000000</Color>
+    <SolidColorBrush x:Key="0Brush" Color="{StaticResource 0}"/>
+    <Color x:Key="5">#131107</Color>
+    <SolidColorBrush x:Key="5Brush" Color="{StaticResource 5}"/>
+    <Color x:Key="10">#1E1B10</Color>
+    <SolidColorBrush x:Key="10Brush" Color="{StaticResource 10}"/>
+    <Color x:Key="15">#29261A</Color>
+    <SolidColorBrush x:Key="15Brush" Color="{StaticResource 15}"/>
+    <Color x:Key="20">#343024</Color>
+    <SolidColorBrush x:Key="20Brush" Color="{StaticResource 20}"/>
+    <Color x:Key="25">#3F3B2E</Color>
+    <SolidColorBrush x:Key="25Brush" Color="{StaticResource 25}"/>
+    <Color x:Key="30">#4B4739</Color>
+    <SolidColorBrush x:Key="30Brush" Color="{StaticResource 30}"/>
+    <Color x:Key="35">#575244</Color>
+    <SolidColorBrush x:Key="35Brush" Color="{StaticResource 35}"/>
+    <Color x:Key="40">#635E50</Color>
+    <SolidColorBrush x:Key="40Brush" Color="{StaticResource 40}"/>
+    <Color x:Key="50">#7C7767</Color>
+    <SolidColorBrush x:Key="50Brush" Color="{StaticResource 50}"/>
+    <Color x:Key="60">#969080</Color>
+    <SolidColorBrush x:Key="60Brush" Color="{StaticResource 60}"/>
+    <Color x:Key="70">#B1AB9A</Color>
+    <SolidColorBrush x:Key="70Brush" Color="{StaticResource 70}"/>
+    <Color x:Key="80">#CDC6B4</Color>
+    <SolidColorBrush x:Key="80Brush" Color="{StaticResource 80}"/>
+    <Color x:Key="90">#EAE2D0</Color>
+    <SolidColorBrush x:Key="90Brush" Color="{StaticResource 90}"/>
+    <Color x:Key="95">#F8F0DD</Color>
+    <SolidColorBrush x:Key="95Brush" Color="{StaticResource 95}"/>
+    <Color x:Key="98">#FFF9EE</Color>
+    <SolidColorBrush x:Key="98Brush" Color="{StaticResource 98}"/>
+    <Color x:Key="99">#FFFBFF</Color>
+    <SolidColorBrush x:Key="99Brush" Color="{StaticResource 99}"/>
+    <Color x:Key="100">#FFFFFF</Color>
+    <SolidColorBrush x:Key="100Brush" Color="{StaticResource 100}"/>
+</ResourceDictionary>

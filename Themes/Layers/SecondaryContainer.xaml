@@ -1,0 +1,237 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:md="clr-namespace:DariuszLabaj.MaterialTheme.Wpf.Controls">
+    <SolidColorBrush x:Key="md.sys.highlightBrush" Color="{StaticResource secondaryFixed}"/>
+    <!-- TextBlock -->
+    <Style TargetType="TextBlock" BasedOn="{StaticResource md.body-TextBlock}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.body-TextBlock" TargetType="TextBlock" BasedOn="{StaticResource md.body-TextBlock}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.display-TextBlock" TargetType="TextBlock" BasedOn="{StaticResource md.display-TextBlock}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-TextBlock" TargetType="TextBlock" BasedOn="{StaticResource md.headline-TextBlock}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.label-TextBlock" TargetType="TextBlock" BasedOn="{StaticResource md.label-TextBlock}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.title-TextBlock" TargetType="TextBlock" BasedOn="{StaticResource md.title-TextBlock}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <!-- TextBox -->
+    <Style TargetType="TextBox" BasedOn="{StaticResource md.body-TextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style x:Key="md.body-TextBox" TargetType="TextBox" BasedOn="{StaticResource md.body-TextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style x:Key="md.display-TextBox" TargetType="TextBox" BasedOn="{StaticResource md.display-TextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-TextBox" TargetType="TextBox" BasedOn="{StaticResource md.headline-TextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style x:Key="md.label-TextBox" TargetType="TextBox" BasedOn="{StaticResource md.label-TextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style x:Key="md.title-TextBox" TargetType="TextBox" BasedOn="{StaticResource md.title-TextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <!-- RichTextBox -->
+    <Style TargetType="RichTextBox" BasedOn="{StaticResource md.body-RichTextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.body-RichTextBox" TargetType="RichTextBox" BasedOn="{StaticResource md.body-RichTextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.display-RichTextBox" TargetType="RichTextBox" BasedOn="{StaticResource md.display-RichTextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-RichTextBox" TargetType="RichTextBox" BasedOn="{StaticResource md.headline-RichTextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.label-RichTextBox" TargetType="RichTextBox" BasedOn="{StaticResource md.label-RichTextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.title-RichTextBox" TargetType="RichTextBox" BasedOn="{StaticResource md.title-RichTextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <!-- RibbonTextBox -->
+    <Style TargetType="RibbonTextBox" BasedOn="{StaticResource md.body-RibbonTextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.body-RibbonTextBox" TargetType="RibbonTextBox" BasedOn="{StaticResource md.body-RibbonTextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.display-RibbonTextBox" TargetType="RibbonTextBox" BasedOn="{StaticResource md.display-RibbonTextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-RibbonTextBox" TargetType="RibbonTextBox" BasedOn="{StaticResource md.headline-RibbonTextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.label-RibbonTextBox" TargetType="RibbonTextBox" BasedOn="{StaticResource md.label-RibbonTextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.title-RibbonTextBox" TargetType="RibbonTextBox" BasedOn="{StaticResource md.title-RibbonTextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <!-- RibbonTwoLineText -->
+    <Style TargetType="RibbonTwoLineText" BasedOn="{StaticResource md.body-RibbonTwoLineText}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.body-RibbonTwoLineText" TargetType="RibbonTwoLineText" BasedOn="{StaticResource md.body-RibbonTwoLineText}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.display-RibbonTwoLineText" TargetType="RibbonTwoLineText" BasedOn="{StaticResource md.display-RibbonTwoLineText}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-RibbonTwoLineText" TargetType="RibbonTwoLineText" BasedOn="{StaticResource md.headline-RibbonTwoLineText}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.label-RibbonTwoLineText" TargetType="RibbonTwoLineText" BasedOn="{StaticResource md.label-RibbonTwoLineText}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.title-RibbonTwoLineText" TargetType="RibbonTwoLineText" BasedOn="{StaticResource md.title-RibbonTwoLineText}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <!-- Label -->
+    <Style TargetType="Label" BasedOn="{StaticResource md.label-Label}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.body-Label" TargetType="Label" BasedOn="{StaticResource md.body-Label}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.display-Label" TargetType="Label" BasedOn="{StaticResource md.display-Label}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-Label" TargetType="Label" BasedOn="{StaticResource md.headline-Label}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.label-Label" TargetType="Label" BasedOn="{StaticResource md.label-Label}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.title-Label" TargetType="Label" BasedOn="{StaticResource md.title-Label}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <!-- Button -->
+    <Style x:Key="md.button.elevated" TargetType="Button" BasedOn="{StaticResource md.button.elevated}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style x:Key="md.button.filled" TargetType="Button" BasedOn="{StaticResource md.button.filled}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style x:Key="md.button.outlined" TargetType="Button" BasedOn="{StaticResource md.button.outlined}">
+        <Setter Property="Foreground" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style x:Key="md.button.text" TargetType="Button" BasedOn="{StaticResource md.button.text}">
+        <Setter Property="Foreground" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style TargetType="Button" BasedOn="{StaticResource md.button.filled}"/>
+    <!-- ToggleButton -->
+    <Style x:Key="md.toggle-button.filled" TargetType="ToggleButton" BasedOn="{StaticResource md.toggle-button.filled}">
+        <Setter Property="Background" Value="{DynamicResource secondaryBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryBrush}"/>
+        <Setter Property="Tag" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.toggle-button.elevated" TargetType="ToggleButton" BasedOn="{StaticResource md.toggle-button.elevated}">
+        <Setter Property="Background" Value="{DynamicResource secondaryBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryBrush}"/>
+        <Setter Property="Tag" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.toggle-button.outlined" TargetType="ToggleButton" BasedOn="{StaticResource md.toggle-button.outlined}">
+        <Setter Property="Background" Value="{DynamicResource secondaryBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryBrush}"/>
+        <Setter Property="Tag" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style TargetType="ToggleButton" BasedOn="{StaticResource md.toggle-button.filled}"/>
+    <Style x:Key="md.checkbox" TargetType="CheckBox" BasedOn="{StaticResource md.checkbox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style TargetType="CheckBox" BasedOn="{StaticResource md.checkbox}"/>
+    <Style x:Key="md.radio-button" TargetType="RadioButton" BasedOn="{StaticResource md.radio-button}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style TargetType="RadioButton" BasedOn="{StaticResource md.radio-button}"/>
+    <Style x:Key="md.comboBox" TargetType="ComboBox" BasedOn="{StaticResource md.comboBox}">
+        <Setter Property="Background" Value="{DynamicResource secondaryContainerBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource secondaryBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style TargetType="ComboBox" BasedOn="{StaticResource md.comboBox}"/>
+    <Style x:Key="md.ProgressBar" TargetType="ProgressBar" BasedOn="{StaticResource md.ProgressBar}">
+        <Setter Property="Foreground" Value="{DynamicResource secondaryBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource surfaceContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.ProgressBar-WihtoutStop" TargetType="ProgressBar" BasedOn="{StaticResource md.ProgressBar-WihtoutStop}">
+        <Setter Property="Foreground" Value="{DynamicResource secondaryBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource surfaceContainerBrush}"/>
+    </Style>
+    <Style x:Key="md.ProgressBar.Circular" TargetType="ProgressBar" BasedOn="{StaticResource md.ProgressBar.Circular}">
+        <Setter Property="Foreground" Value="{DynamicResource secondaryBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource surfaceContainerBrush}"/>
+    </Style>
+    <Style TargetType="ProgressBar" BasedOn="{StaticResource md.ProgressBar}"/>
+    <Style x:Key="md.ScrollViewer" TargetType="ScrollViewer" BasedOn="{StaticResource md.ScrollViewer}">
+        <Setter Property="Foreground" Value="{DynamicResource secondaryBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style TargetType="ScrollViewer" BasedOn="{StaticResource md.ScrollViewer}"/>
+    <!-- Text Input -->
+    <Style x:Key="md.TextInput" TargetType="md:TextInput" BasedOn="{StaticResource md.TextInput}">
+        <Setter Property="Background" Value="{DynamicResource surfaceContainerBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onSurfaceBrush}"/>
+        <Setter Property="SupportingTextBackground" Value="{DynamicResource secondaryContainerBrush}"/>
+        <Setter Property="SupportingTextForeground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style TargetType="md:TextInput" BasedOn="{StaticResource md.TextInput}"/>
+    <!-- Password Input -->
+    <Style x:Key="md.PasswordInput" TargetType="md:PasswordInput" BasedOn="{StaticResource md.PasswordInput}">
+        <Setter Property="Background" Value="{DynamicResource surfaceContainerBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onSurfaceBrush}"/>
+        <Setter Property="SupportingTextBackground" Value="{DynamicResource secondaryContainerBrush}"/>
+        <Setter Property="SupportingTextForeground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+    </Style>
+    <Style TargetType="md:PasswordInput" BasedOn="{StaticResource md.PasswordInput}"/>
+    <!-- TabControl -->
+    <Style x:Key="md.TabControl" TargetType="TabControl" BasedOn="{StaticResource md.TabControl}">
+        <Setter Property="Background" Value="{DynamicResource tertiaryContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+        <Setter Property="Tag" Value="{DynamicResource onSecondaryBrush}"/>
+        <Style.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary>
+                        <Style TargetType="Border" BasedOn="{StaticResource OutlinedCard}">
+                            <Setter Property="Background" Value="{DynamicResource tertiaryContainerBrush}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource tertiaryBrush}"/>
+                        </Style>
+                    </ResourceDictionary>
+                    <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Layers/TeriaryContainer.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Style.Resources>
+    </Style>
+    <Style TargetType="TabControl" BasedOn="{StaticResource md.TabControl}"/>
+    <!-- ListBox -->
+    <Style x:Key="md.ListBox" TargetType="ListBox" BasedOn="{StaticResource md.ListBox}">
+        <Setter Property="Foreground" Value="{DynamicResource secondaryContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style TargetType="ListBox" BasedOn="{StaticResource md.ListBox}"/>
+</ResourceDictionary>

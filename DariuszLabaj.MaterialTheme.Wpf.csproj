@@ -9,4 +9,18 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Assets\Fonts\Roboto-Italic-VariableFont_wdth,wght.ttf" />
+    <None Remove="Assets\Fonts\Roboto-VariableFont_wdth,wght.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Fonts\Roboto-Italic-VariableFont_wdth,wght.ttf" />
+    <Resource Include="Assets\Fonts\Roboto-VariableFont_wdth,wght.ttf" />
+  </ItemGroup>
+
 </Project>

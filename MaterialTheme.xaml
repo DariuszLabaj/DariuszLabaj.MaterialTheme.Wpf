@@ -1,0 +1,222 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:md="clr-namespace:DariuszLabaj.MaterialTheme.Wpf.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Typography.xaml"/>
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Dimensions.xaml"/>
+        
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Icons/MaterialIcons.xaml"/>
+        
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Palettes/neutral.xaml"/>
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Schemes/light.xaml"/>
+
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Controls/Cards.xaml"/>
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Controls/Button.xaml"/>
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Controls/CheckBox.xaml"/>
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Controls/ComboBox.xaml"/>
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Controls/DataGrid.xaml"/>
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Controls/ListBox.xaml"/>
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Controls/ProgressBar.xaml"/>
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Controls/RadioButton.xaml"/>
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Controls/ScrollBar.xaml"/>
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Controls/TabControl.xaml"/>
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Controls/ToggleButton.xaml"/>
+        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Controls/InputControls.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <Style TargetType="Window">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="{DynamicResource background}" Offset="0"/>
+                    <GradientStop Color="{DynamicResource background}" Offset="0.8"/>
+                    <GradientStop Color="{DynamicResource surfaceContainer}" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Page">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="{DynamicResource background}" Offset="0"/>
+                    <GradientStop Color="{DynamicResource background}" Offset="0.8"/>
+                    <GradientStop Color="{DynamicResource surfaceContainer}" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="TextBlock" BasedOn="{StaticResource md.body-TextBlock}"/>
+    <Style TargetType="TextBox" BasedOn="{StaticResource md.body-TextBox}"/>
+    <Style TargetType="RichTextBox" BasedOn="{StaticResource md.body-RichTextBox}"/>
+    <Style TargetType="RibbonTextBox" BasedOn="{StaticResource md.body-RibbonTextBox}"/>
+    <Style TargetType="RibbonTwoLineText" BasedOn="{StaticResource md.body-RibbonTwoLineText}"/>
+    <Style TargetType="Label" BasedOn="{StaticResource md.label-Label}"/>
+
+    <Style TargetType="Button" BasedOn="{StaticResource md.button.filled}"/>
+    <Style TargetType="ToggleButton" BasedOn="{StaticResource md.toggle-button.filled}"/>
+    <Style TargetType="CheckBox" BasedOn="{StaticResource md.checkbox}"/>
+    <Style TargetType="RadioButton" BasedOn="{StaticResource md.radio-button}"/>
+    <Style TargetType="ComboBox" BasedOn="{StaticResource md.comboBox}"/>
+    <Style TargetType="ProgressBar" BasedOn="{StaticResource md.ProgressBar}"/>
+    <Style TargetType="Thumb" BasedOn="{StaticResource md.sys.Thumb}"/>
+    <Style TargetType="ScrollBar" BasedOn="{StaticResource md.ScrollBar}"/>
+    <Style TargetType="ScrollViewer" BasedOn="{StaticResource md.ScrollViewer}"/>
+    <Style TargetType="TabControl" BasedOn="{StaticResource md.TabControl}"/>
+    <Style TargetType="DataGrid" BasedOn="{StaticResource md.DataGrid}"/>
+    <Style TargetType="GroupBox" BasedOn="{StaticResource md.GroupBox}"/>
+    <Style TargetType="ListBox" BasedOn="{StaticResource md.ListBox}"/>
+    <Style TargetType="md:SearchBox" BasedOn="{StaticResource md.SearchBox}"/>
+    <Style TargetType="md:TextInput" BasedOn="{StaticResource md.TextInput}"/>
+    <Style TargetType="md:PasswordInput" BasedOn="{StaticResource md.PasswordInput}"/>
+    <!-- Borders -->
+    <Style x:Key="FilledCard" TargetType="Border" BasedOn="{StaticResource FilledCard}">
+        <Setter Property="Background" Value="{DynamicResource surfaceContainerBrush}"/>
+        <Setter Property="Padding" Value="16"/>
+        <Setter Property="CornerRadius" Value="16"/>
+        <Style.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Layers/SurfaceContainer.xaml"/>
+                    <ResourceDictionary>
+                        <Style TargetType="Border" BasedOn="{StaticResource FilledCard}">
+                            <Setter Property="Background" Value="{DynamicResource primaryContainerBrush}"/>
+                            <Style.Resources>
+                                <ResourceDictionary>
+                                    <ResourceDictionary.MergedDictionaries>
+                                        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Layers/PrimaryContainer.xaml"/>
+                                        <ResourceDictionary>
+                                            <Style TargetType="Border" BasedOn="{StaticResource FilledCard}">
+                                                <Setter Property="Background" Value="{DynamicResource secondaryContainerBrush}"/>
+                                                <Style.Resources>
+                                                    <ResourceDictionary>
+                                                        <ResourceDictionary.MergedDictionaries>
+                                                            <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Layers/SecondaryContainer.xaml"/>
+                                                            <ResourceDictionary>
+                                                                <Style TargetType="Border" BasedOn="{StaticResource FilledCard}">
+                                                                    <Setter Property="Background" Value="{DynamicResource tertiaryContainerBrush}"/>
+                                                                    <Style.Resources>
+                                                                        <ResourceDictionary>
+                                                                            <ResourceDictionary.MergedDictionaries>
+                                                                                <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Layers/TeriaryContainer.xaml"/>
+                                                                            </ResourceDictionary.MergedDictionaries>
+                                                                        </ResourceDictionary>
+                                                                    </Style.Resources>
+                                                                </Style>
+                                                            </ResourceDictionary>
+                                                        </ResourceDictionary.MergedDictionaries>
+                                                    </ResourceDictionary>
+                                                </Style.Resources>
+                                            </Style>
+                                        </ResourceDictionary>
+                                    </ResourceDictionary.MergedDictionaries>
+                                </ResourceDictionary>
+                            </Style.Resources>
+                        </Style>
+                    </ResourceDictionary>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Style.Resources>
+    </Style>
+    <Style x:Key="OutlinedCard" TargetType="Border" BasedOn="{StaticResource OutlinedCard}">
+        <Setter Property="Background" Value="{DynamicResource surfaceContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource surfaceTintBrush}"/>
+        <Style.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Layers/SurfaceContainer.xaml"/>
+                    <ResourceDictionary>
+                        <Style TargetType="Border" BasedOn="{StaticResource OutlinedCard}">
+                            <Setter Property="Background" Value="{DynamicResource primaryContainerBrush}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+                            <Style.Resources>
+                                <ResourceDictionary>
+                                    <ResourceDictionary.MergedDictionaries>
+                                        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Layers/PrimaryContainer.xaml"/>
+                                        <ResourceDictionary>
+                                            <Style TargetType="Border" BasedOn="{StaticResource OutlinedCard}">
+                                                <Setter Property="Background" Value="{DynamicResource secondaryContainerBrush}"/>
+                                                <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+                                                <Style.Resources>
+                                                    <ResourceDictionary>
+                                                        <ResourceDictionary.MergedDictionaries>
+                                                            <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Layers/SecondaryContainer.xaml"/>
+                                                            <ResourceDictionary>
+                                                                <Style TargetType="Border" BasedOn="{StaticResource OutlinedCard}">
+                                                                    <Setter Property="Background" Value="{DynamicResource tertiaryContainerBrush}"/>
+                                                                    <Setter Property="BorderBrush" Value="{DynamicResource tertiaryBrush}"/>
+                                                                    <Style.Resources>
+                                                                        <ResourceDictionary>
+                                                                            <ResourceDictionary.MergedDictionaries>
+                                                                                <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Layers/TeriaryContainer.xaml"/>
+                                                                            </ResourceDictionary.MergedDictionaries>
+                                                                        </ResourceDictionary>
+                                                                    </Style.Resources>
+                                                                </Style>
+                                                            </ResourceDictionary>
+                                                        </ResourceDictionary.MergedDictionaries>
+                                                    </ResourceDictionary>
+                                                </Style.Resources>
+                                            </Style>
+                                        </ResourceDictionary>
+                                    </ResourceDictionary.MergedDictionaries>
+                                </ResourceDictionary>
+                            </Style.Resources>
+                        </Style>
+                    </ResourceDictionary>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Style.Resources>
+    </Style>
+    <Style x:Key="ElevatedCard" TargetType="Border" BasedOn="{StaticResource ElevatedCard}">
+        <Setter Property="Background" Value="{DynamicResource surfaceContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource surfaceTintBrush}"/>
+        <Style.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Layers/SurfaceContainer.xaml"/>
+                    <ResourceDictionary>
+                        <Style TargetType="Border" BasedOn="{StaticResource ElevatedCard}">
+                            <Setter Property="Background" Value="{DynamicResource primaryContainerBrush}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+                            <Style.Resources>
+                                <ResourceDictionary>
+                                    <ResourceDictionary.MergedDictionaries>
+                                        <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Layers/PrimaryContainer.xaml"/>
+                                        <ResourceDictionary>
+                                            <Style TargetType="Border" BasedOn="{StaticResource ElevatedCard}">
+                                                <Setter Property="Background" Value="{DynamicResource secondaryContainerBrush}"/>
+                                                <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+                                                <Style.Resources>
+                                                    <ResourceDictionary>
+                                                        <ResourceDictionary.MergedDictionaries>
+                                                            <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Layers/SecondaryContainer.xaml"/>
+                                                            <ResourceDictionary>
+                                                                <Style TargetType="Border" BasedOn="{StaticResource ElevatedCard}">
+                                                                    <Setter Property="Background" Value="{DynamicResource tertiaryContainerBrush}"/>
+                                                                    <Setter Property="BorderBrush" Value="{DynamicResource tertiaryBrush}"/>
+                                                                    <Style.Resources>
+                                                                        <ResourceDictionary>
+                                                                            <ResourceDictionary.MergedDictionaries>
+                                                                                <ResourceDictionary Source="/DariuszLabaj.MaterialTheme.Wpf;component/Themes/Layers/TeriaryContainer.xaml"/>
+                                                                            </ResourceDictionary.MergedDictionaries>
+                                                                        </ResourceDictionary>
+                                                                    </Style.Resources>
+                                                                </Style>
+                                                            </ResourceDictionary>
+                                                        </ResourceDictionary.MergedDictionaries>
+                                                    </ResourceDictionary>
+                                                </Style.Resources>
+                                            </Style>
+                                        </ResourceDictionary>
+                                    </ResourceDictionary.MergedDictionaries>
+                                </ResourceDictionary>
+                            </Style.Resources>
+                        </Style>
+                    </ResourceDictionary>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Style.Resources>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,966 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:DariuszLabaj.MaterialTheme.Wpf.Converters"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <FontFamily x:Key="md.ref.typeface.brand">pack://application:,,,/Assets/Fonts/Roboto-VariableFont_wdth,wght.ttf</FontFamily>
+    <FontFamily x:Key="md.ref.typeface.plain">pack://application:,,,/Assets/Fonts/Roboto-VariableFont_wdth,wght.ttf</FontFamily>
+    <FontFamily x:Key="md.ref.typeface.weight-bold">pack://application:,,,/Assets/Fonts/Roboto-VariableFont_wdth,wght.ttf</FontFamily>
+    <FontFamily x:Key="md.ref.typeface.weight-medium">pack://application:,,,/Assets/Fonts/Roboto-VariableFont_wdth,wght.ttf</FontFamily>
+    <FontFamily x:Key="md.ref.typeface.weight-regular">pack://application:,,,/Assets/Fonts/Roboto-VariableFont_wdth,wght.ttf</FontFamily>
+
+    <sys:Double x:Key="md.sys.typescale.body-large-line-height">24</sys:Double>
+    <sys:Double x:Key="md.sys.typescale.body-large-size">16</sys:Double>
+    <FontWeight x:Key="md.sys.typescale.body-large-weight">Normal</FontWeight>
+    <sys:Double x:Key="md.sys.typescale.body-medium-line-height">20</sys:Double>
+    <sys:Double x:Key="md.sys.typescale.body-medium-size">14</sys:Double>
+    <FontWeight x:Key="md.sys.typescale.body-medium-weight">Normal</FontWeight>
+    <sys:Double x:Key="md.sys.typescale.body-small-line-height">16</sys:Double>
+    <sys:Double x:Key="md.sys.typescale.body-small-size">12</sys:Double>
+    <FontWeight x:Key="md.sys.typescale.body-small-weight">Normal</FontWeight>
+
+    <sys:Double x:Key="md.sys.typescale.display-large-line-height">64</sys:Double>
+    <sys:Double x:Key="md.sys.typescale.display-large-size">57</sys:Double>
+    <FontWeight x:Key="md.sys.typescale.display-large-weight">Normal</FontWeight>
+    <sys:Double x:Key="md.sys.typescale.display-medium-line-height">52</sys:Double>
+    <sys:Double x:Key="md.sys.typescale.display-medium-size">45</sys:Double>
+    <FontWeight x:Key="md.sys.typescale.display-medium-weight">Normal</FontWeight>
+    <sys:Double x:Key="md.sys.typescale.display-small-line-height">44</sys:Double>
+    <sys:Double x:Key="md.sys.typescale.display-small-size">36</sys:Double>
+    <FontWeight x:Key="md.sys.typescale.display-small-weight">Normal</FontWeight>
+
+    <sys:Double x:Key="md.sys.typescale.headline-large-line-height">40</sys:Double>
+    <sys:Double x:Key="md.sys.typescale.headline-large-size">32</sys:Double>
+    <FontWeight x:Key="md.sys.typescale.headline-large-weight">Normal</FontWeight>
+    <sys:Double x:Key="md.sys.typescale.headline-medium-line-height">36</sys:Double>
+    <sys:Double x:Key="md.sys.typescale.headline-medium-size">28</sys:Double>
+    <FontWeight x:Key="md.sys.typescale.headline-medium-weight">Normal</FontWeight>
+    <sys:Double x:Key="md.sys.typescale.headline-small-line-height">32</sys:Double>
+    <sys:Double x:Key="md.sys.typescale.headline-small-size">24</sys:Double>
+    <FontWeight x:Key="md.sys.typescale.headline-small-weight">Normal</FontWeight>
+
+    <sys:Double x:Key="md.sys.typescale.label-large-line-height">20</sys:Double>
+    <sys:Double x:Key="md.sys.typescale.label-large-size">14</sys:Double>
+    <FontWeight x:Key="md.sys.typescale.label-large-weight">Bold</FontWeight>
+    <sys:Double x:Key="md.sys.typescale.label-medium-line-height">16</sys:Double>
+    <sys:Double x:Key="md.sys.typescale.label-medium-size">12</sys:Double>
+    <FontWeight x:Key="md.sys.typescale.label-medium-weight">Bold</FontWeight>
+    <sys:Double x:Key="md.sys.typescale.label-small-line-height">16</sys:Double>
+    <sys:Double x:Key="md.sys.typescale.label-small-size">11</sys:Double>
+    <FontWeight x:Key="md.sys.typescale.label-small-weight">Bold</FontWeight>
+
+    <sys:Double x:Key="md.sys.typescale.title-large-line-height">28</sys:Double>
+    <sys:Double x:Key="md.sys.typescale.title-large-size">22</sys:Double>
+    <FontWeight x:Key="md.sys.typescale.title-large-weight">Bold</FontWeight>
+    <sys:Double x:Key="md.sys.typescale.title-medium-line-height">24</sys:Double>
+    <sys:Double x:Key="md.sys.typescale.title-medium-size">16</sys:Double>
+    <FontWeight x:Key="md.sys.typescale.title-medium-weight">Bold</FontWeight>
+    <sys:Double x:Key="md.sys.typescale.title-small-line-height">20</sys:Double>
+    <sys:Double x:Key="md.sys.typescale.title-small-size">14</sys:Double>
+    <FontWeight x:Key="md.sys.typescale.title-small-weight">Bold</FontWeight>
+
+    <!-- TextBlock -->
+
+    <Style x:Key="md.body-large-TextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-large-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.body-large-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-large-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.body-medium-TextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-medium-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.body-medium-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-medium-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.body-small-TextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-small-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.body-small-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-small-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.body-TextBlock" TargetType="TextBlock" BasedOn="{StaticResource md.body-medium-TextBlock}"/>
+
+    <Style x:Key="md.display-large-TextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-large-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.display-large-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-large-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.display-medium-TextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-medium-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.display-medium-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-medium-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.display-small-TextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-small-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.display-small-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-small-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.display-TextBlock" TargetType="TextBlock" BasedOn="{StaticResource md.display-medium-TextBlock}"/>
+
+    <Style x:Key="md.headline-large-TextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-large-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.headline-large-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-large-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-medium-TextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-medium-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.headline-medium-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-medium-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-small-TextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-small-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.headline-small-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-small-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-TextBlock" TargetType="TextBlock" BasedOn="{StaticResource md.headline-medium-TextBlock}"/>
+
+    <Style x:Key="md.label-large-TextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-large-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.label-large-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-large-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.label-medium-TextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-medium-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.label-medium-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-medium-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.label-small-TextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-small-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.label-small-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-small-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.label-TextBlock" TargetType="TextBlock" BasedOn="{StaticResource md.label-medium-TextBlock}"/>
+
+    <Style x:Key="md.title-large-TextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-large-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.title-large-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-large-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.title-medium-TextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-medium-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.title-medium-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-medium-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.title-small-TextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-small-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.title-small-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-small-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.title-TextBlock" TargetType="TextBlock" BasedOn="{StaticResource md.title-medium-TextBlock}"/>
+
+    <Style TargetType="TextBlock" BasedOn="{StaticResource md.body-TextBlock}"/>
+
+    <!-- TextBox -->
+    <SolidColorBrush x:Key="md.sys.highlightBrush" Color="{DynamicResource primaryFixed}"/>
+
+    <ControlTemplate x:Key="md.sys.TextBox.ControlTemplate" TargetType="{x:Type TextBoxBase}">
+        <ControlTemplate.Resources>
+            <converters:ThicknessToHeightConverter x:Key="ThicknessToHeightConverter"/>
+        </ControlTemplate.Resources>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border x:Name="border" CornerRadius="4 4 0 0" Background="{TemplateBinding Background}" BorderThickness="0" SnapsToDevicePixels="True">
+                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+            </Border>
+            <Rectangle VerticalAlignment="Bottom" Height="{TemplateBinding BorderThickness ,Converter={StaticResource ThicknessToHeightConverter}}" Fill="{TemplateBinding BorderBrush}"/>
+            <TextBlock x:Name="SupportingText" Visibility="Visible" Grid.Row="1" Text="{TemplateBinding Tag}" FontFamily="{TemplateBinding FontFamily}" FontSize="4" Height="Auto"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource md.sys.highlightBrush}"/>
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource md.sys.highlightBrush}"/>
+            </Trigger>
+            <Trigger Property="Tag" Value="{x:Null}">
+                <Setter TargetName="SupportingText" Property="Visibility" Value="Collapsed"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                    <Condition Property="IsSelectionActive" Value="false"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="md.body-large-TextBox" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="MinHeight" Value="{DynamicResource md.sys.typescale.body-large-line-height}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.TextBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.body-medium-TextBox" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="MinHeight" Value="{DynamicResource md.sys.typescale.body-medium-line-height}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.TextBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.body-small-TextBox" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="MinHeight" Value="{DynamicResource md.sys.typescale.body-small-line-height}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.TextBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.body-TextBox" TargetType="TextBox" BasedOn="{StaticResource md.body-medium-TextBox}"/>
+
+    <Style x:Key="md.display-large-TextBox" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.TextBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.display-medium-TextBox" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.TextBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.display-small-TextBox" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.TextBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.display-TextBox" TargetType="TextBox" BasedOn="{StaticResource md.display-medium-TextBox}"/>
+
+    <Style x:Key="md.headline-large-TextBox" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.TextBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.headline-medium-TextBox" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.TextBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.headline-small-TextBox" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.TextBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.headline-TextBox" TargetType="TextBox" BasedOn="{StaticResource md.headline-medium-TextBox}"/>
+
+    <Style x:Key="md.label-large-TextBox" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.TextBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.label-medium-TextBox" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.TextBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.label-small-TextBox" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.TextBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.label-TextBox" TargetType="TextBox" BasedOn="{StaticResource md.label-medium-TextBox}"/>
+
+    <Style x:Key="md.title-large-TextBox" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.TextBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.title-medium-TextBox" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.TextBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.title-small-TextBox" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.TextBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.title-TextBox" TargetType="TextBox" BasedOn="{StaticResource md.title-medium-TextBox}"/>
+
+    <Style TargetType="TextBox" BasedOn="{StaticResource md.body-TextBox}"/>
+
+    <!-- RichTextBox -->
+
+    <Style x:Key="md.body-large-RichTextBox" TargetType="RichTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.body-medium-RichTextBox" TargetType="RichTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.body-small-RichTextBox" TargetType="RichTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.body-RichTextBox" TargetType="RichTextBox" BasedOn="{StaticResource md.body-medium-RichTextBox}"/>
+
+    <Style x:Key="md.display-large-RichTextBox" TargetType="RichTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.display-medium-RichTextBox" TargetType="RichTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.display-small-RichTextBox" TargetType="RichTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.display-RichTextBox" TargetType="RichTextBox" BasedOn="{StaticResource md.display-medium-RichTextBox}"/>
+
+    <Style x:Key="md.headline-large-RichTextBox" TargetType="RichTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-medium-RichTextBox" TargetType="RichTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-small-RichTextBox" TargetType="RichTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-RichTextBox" TargetType="RichTextBox" BasedOn="{StaticResource md.headline-medium-RichTextBox}"/>
+
+    <Style x:Key="md.label-large-RichTextBox" TargetType="RichTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.label-medium-RichTextBox" TargetType="RichTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.label-small-RichTextBox" TargetType="RichTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.label-RichTextBox" TargetType="RichTextBox" BasedOn="{StaticResource md.label-medium-RichTextBox}"/>
+
+    <Style x:Key="md.title-large-RichTextBox" TargetType="RichTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.title-medium-RichTextBox" TargetType="RichTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.title-small-RichTextBox" TargetType="RichTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.title-RichTextBox" TargetType="RichTextBox" BasedOn="{StaticResource md.title-medium-RichTextBox}"/>
+
+    <Style TargetType="RichTextBox" BasedOn="{StaticResource md.body-RichTextBox}"/>
+
+    <!-- RibbonTextBox -->
+
+    <Style x:Key="md.body-large-RibbonTextBox" TargetType="RibbonTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.body-medium-RibbonTextBox" TargetType="RibbonTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.body-small-RibbonTextBox" TargetType="RibbonTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.body-RibbonTextBox" TargetType="RibbonTextBox" BasedOn="{StaticResource md.body-medium-RibbonTextBox}"/>
+
+    <Style x:Key="md.display-large-RibbonTextBox" TargetType="RibbonTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.display-medium-RibbonTextBox" TargetType="RibbonTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.display-small-RibbonTextBox" TargetType="RibbonTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.display-RibbonTextBox" TargetType="RibbonTextBox" BasedOn="{StaticResource md.display-medium-RibbonTextBox}"/>
+
+    <Style x:Key="md.headline-large-RibbonTextBox" TargetType="RibbonTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-medium-RibbonTextBox" TargetType="RibbonTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-small-RibbonTextBox" TargetType="RibbonTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-RibbonTextBox" TargetType="RibbonTextBox" BasedOn="{StaticResource md.headline-medium-RibbonTextBox}"/>
+
+    <Style x:Key="md.label-large-RibbonTextBox" TargetType="RibbonTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.label-medium-RibbonTextBox" TargetType="RibbonTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.label-small-RibbonTextBox" TargetType="RibbonTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.label-RibbonTextBox" TargetType="RibbonTextBox" BasedOn="{StaticResource md.label-medium-RibbonTextBox}"/>
+
+    <Style x:Key="md.title-large-RibbonTextBox" TargetType="RibbonTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.title-medium-RibbonTextBox" TargetType="RibbonTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.title-small-RibbonTextBox" TargetType="RibbonTextBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.title-RibbonTextBox" TargetType="RibbonTextBox" BasedOn="{StaticResource md.title-medium-RibbonTextBox}"/>
+
+    <Style TargetType="RibbonTextBox" BasedOn="{StaticResource md.body-RibbonTextBox}"/>
+
+    <!-- RibbonTwoLineText -->
+
+    <Style x:Key="md.body-large-RibbonTwoLineText" TargetType="RibbonTwoLineText">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-large-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.body-large-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-large-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.body-medium-RibbonTwoLineText" TargetType="RibbonTwoLineText">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-medium-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.body-medium-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-medium-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.body-small-RibbonTwoLineText" TargetType="RibbonTwoLineText">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-small-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.body-small-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-small-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.body-RibbonTwoLineText" TargetType="RibbonTwoLineText" BasedOn="{StaticResource md.body-medium-RibbonTwoLineText}"/>
+
+    <Style x:Key="md.display-large-RibbonTwoLineText" TargetType="RibbonTwoLineText">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-large-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.display-large-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-large-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.display-medium-RibbonTwoLineText" TargetType="RibbonTwoLineText">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-medium-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.display-medium-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-medium-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.display-small-RibbonTwoLineText" TargetType="RibbonTwoLineText">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-small-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.display-small-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-small-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.display-RibbonTwoLineText" TargetType="RibbonTwoLineText" BasedOn="{StaticResource md.display-medium-RibbonTwoLineText}"/>
+
+    <Style x:Key="md.headline-large-RibbonTwoLineText" TargetType="RibbonTwoLineText">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-large-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.headline-large-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-large-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-medium-RibbonTwoLineText" TargetType="RibbonTwoLineText">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-medium-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.headline-medium-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-medium-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-small-RibbonTwoLineText" TargetType="RibbonTwoLineText">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-small-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.headline-small-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-small-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-RibbonTwoLineText" TargetType="RibbonTwoLineText" BasedOn="{StaticResource md.headline-medium-RibbonTwoLineText}"/>
+
+    <Style x:Key="md.label-large-RibbonTwoLineText" TargetType="RibbonTwoLineText">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-large-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.label-large-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-large-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.label-medium-RibbonTwoLineText" TargetType="RibbonTwoLineText">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-medium-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.label-medium-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-medium-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.label-small-RibbonTwoLineText" TargetType="RibbonTwoLineText">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-small-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.label-small-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-small-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.label-RibbonTwoLineText" TargetType="RibbonTwoLineText" BasedOn="{StaticResource md.label-medium-RibbonTwoLineText}"/>
+
+    <Style x:Key="md.title-large-RibbonTwoLineText" TargetType="RibbonTwoLineText">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-large-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.title-large-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-large-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.title-medium-RibbonTwoLineText" TargetType="RibbonTwoLineText">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-medium-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.title-medium-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-medium-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.title-small-RibbonTwoLineText" TargetType="RibbonTwoLineText">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-small-size}"/>
+        <Setter Property="LineHeight" Value="{DynamicResource md.sys.typescale.title-small-line-height}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-small-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.title-RibbonTwoLineText" TargetType="RibbonTwoLineText" BasedOn="{StaticResource md.title-medium-RibbonTwoLineText}"/>
+
+    <Style TargetType="RibbonTwoLineText" BasedOn="{StaticResource md.body-RibbonTwoLineText}"/>
+
+    <!-- Label -->
+
+    <Style x:Key="md.body-large-Label" TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-large-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.body-medium-Label" TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-medium-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.body-small-Label" TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-small-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.body-Label" TargetType="Label" BasedOn="{StaticResource md.body-medium-Label}"/>
+
+    <Style x:Key="md.display-large-Label" TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-large-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.display-medium-Label" TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-medium-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.display-small-Label" TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-small-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.display-Label" TargetType="Label" BasedOn="{StaticResource md.display-medium-Label}"/>
+
+    <Style x:Key="md.headline-large-Label" TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-large-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-medium-Label" TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-medium-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-small-Label" TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-small-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-Label" TargetType="Label" BasedOn="{StaticResource md.headline-medium-Label}"/>
+
+    <Style x:Key="md.label-large-Label" TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-large-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.label-medium-Label" TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-medium-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.label-small-Label" TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-small-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.label-Label" TargetType="Label" BasedOn="{StaticResource md.label-medium-Label}"/>
+
+    <Style x:Key="md.title-large-Label" TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-large-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.title-medium-Label" TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-medium-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.title-small-Label" TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-small-weight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+    </Style>
+    <Style x:Key="md.title-Label" TargetType="Label" BasedOn="{StaticResource md.title-medium-Label}"/>
+
+    <Style TargetType="Label" BasedOn="{StaticResource md.label-Label}"/>
+</ResourceDictionary>

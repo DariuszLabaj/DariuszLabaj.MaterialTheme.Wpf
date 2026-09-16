@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:md="clr-namespace:DariuszLabaj.MaterialTheme.Wpf.Controls">
+    <!-- Text Input -->
+    <Style x:Key="md.TextInput" TargetType="md:TextInput">
+        <Setter Property="Background" Value="{DynamicResource surfaceContainerBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onSurfaceBrush}"/>
+        <Setter Property="SupportingTextBackground" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="SupportingTextForeground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-medium-size}"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="MinWidth" Value="120"/>
+    </Style>
+    <!-- Search Box -->
+    <Style x:Key="md.SearchBox" TargetType="md:SearchBox">
+        <Setter Property="Background" Value="{DynamicResource surfaceContainerBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onSurfaceBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource outlineBrush}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-medium-size}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Tag" Value="{DynamicResource outlineBrush}"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="MinWidth" Value="120"/>
+    </Style>
+    <!-- Password Input -->
+    <Style x:Key="md.PasswordInput" TargetType="md:PasswordInput">
+        <Setter Property="Background" Value="{DynamicResource surfaceContainerBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onSurfaceBrush}"/>
+        <Setter Property="SupportingTextBackground" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="SupportingTextForeground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-medium-size}"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="MinWidth" Value="120"/>
+    </Style>
+</ResourceDictionary>
