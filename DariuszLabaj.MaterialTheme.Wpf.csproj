@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
@@ -9,18 +9,46 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
+  <PropertyGroup>
+	<PackageId>Dariusz_Labaj_Material_Theme_Wpf</PackageId>
+	<Version>1.0.0</Version>
+	<Authors>Dariusz Łabaj</Authors>
+	<Company>Dariusz Łabaj</Company>
+	<Description>Moja biblioteka implementująca kontrolki i style Material Design 3.0 do WPF</Description>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<Title>Material Theme WPF</Title>
+	<Copyright>Dariusz Łabaj 2026</Copyright>
+	<PackageProjectUrl>https://github.com/DariuszLabaj/DariuszLabaj.MaterialTheme.Wpf</PackageProjectUrl>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<RepositoryUrl>https://github.com/DariuszLabaj/DariuszLabaj.MaterialTheme.Wpf</RepositoryUrl>
+	<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	<IncludeSymbols>True</IncludeSymbols>
+  </PropertyGroup>
+
+	<ItemGroup>
     <None Remove="Assets\Fonts\Roboto-Italic-VariableFont_wdth,wght.ttf" />
     <None Remove="Assets\Fonts\Roboto-VariableFont_wdth,wght.ttf" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.161" />
+    <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Assets\Fonts\Roboto-Italic-VariableFont_wdth,wght.ttf" />
     <Resource Include="Assets\Fonts\Roboto-VariableFont_wdth,wght.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
