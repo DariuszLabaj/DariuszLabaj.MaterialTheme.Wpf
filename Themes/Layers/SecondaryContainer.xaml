@@ -46,6 +46,31 @@
         <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
     </Style>
+    <!-- PasswordBox -->
+    <Style TargetType="PasswordBox" BasedOn="{StaticResource md.body-PasswordBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style x:Key="md.body-PasswordBox" TargetType="PasswordBox" BasedOn="{StaticResource md.body-PasswordBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style x:Key="md.display-PasswordBox" TargetType="PasswordBox" BasedOn="{StaticResource md.display-PasswordBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style x:Key="md.headline-PasswordBox" TargetType="PasswordBox" BasedOn="{StaticResource md.headline-PasswordBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style x:Key="md.label-PasswordBox" TargetType="PasswordBox" BasedOn="{StaticResource md.label-PasswordBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
+    <Style x:Key="md.title-PasswordBox" TargetType="PasswordBox" BasedOn="{StaticResource md.title-PasswordBox}">
+        <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource secondaryBrush}"/>
+    </Style>
     <!-- RichTextBox -->
     <Style TargetType="RichTextBox" BasedOn="{StaticResource md.body-RichTextBox}">
         <Setter Property="Foreground" Value="{DynamicResource onSecondaryContainerBrush}"/>

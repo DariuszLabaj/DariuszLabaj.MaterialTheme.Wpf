@@ -49,6 +49,7 @@
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource md.body-TextBlock}"/>
     <Style TargetType="TextBox" BasedOn="{StaticResource md.body-TextBox}"/>
+    <Style TargetType="PasswordBox" BasedOn="{StaticResource md.body-PasswordBox}"/>
     <Style TargetType="RichTextBox" BasedOn="{StaticResource md.body-RichTextBox}"/>
     <Style TargetType="RibbonTextBox" BasedOn="{StaticResource md.body-RibbonTextBox}"/>
     <Style TargetType="RibbonTwoLineText" BasedOn="{StaticResource md.body-RibbonTwoLineText}"/>

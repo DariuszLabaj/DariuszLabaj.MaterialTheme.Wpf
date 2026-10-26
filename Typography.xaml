@@ -506,6 +506,331 @@
 
     <Style TargetType="TextBox" BasedOn="{StaticResource md.body-TextBox}"/>
 
+    <!-- PasswordBox -->
+
+    <ControlTemplate x:Key="md.sys.PasswordBox.ControlTemplate" TargetType="{x:Type PasswordBox}">
+        <ControlTemplate.Resources>
+            <converters:ThicknessToHeightConverter x:Key="ThicknessToHeightConverter"/>
+        </ControlTemplate.Resources>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border x:Name="border" CornerRadius="4 4 0 0" Background="{TemplateBinding Background}" BorderThickness="0" SnapsToDevicePixels="True">
+                <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+            </Border>
+            <Rectangle VerticalAlignment="Bottom" Height="{TemplateBinding BorderThickness ,Converter={StaticResource ThicknessToHeightConverter}}" Fill="{TemplateBinding BorderBrush}"/>
+            <TextBlock x:Name="SupportingText" Visibility="Visible" Grid.Row="1" Text="{TemplateBinding Tag}" FontFamily="{TemplateBinding FontFamily}" FontSize="4" Height="Auto"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="border" Property="Opacity" Value="0.56"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource md.sys.highlightBrush}"/>
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource md.sys.highlightBrush}"/>
+            </Trigger>
+            <Trigger Property="Tag" Value="{x:Null}">
+                <Setter TargetName="SupportingText" Property="Visibility" Value="Collapsed"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                    <Condition Property="IsSelectionActive" Value="false"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="md.body-large-PasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="MinHeight" Value="{DynamicResource md.sys.typescale.body-large-line-height}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.PasswordBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.body-medium-PasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="MinHeight" Value="{DynamicResource md.sys.typescale.body-medium-line-height}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.PasswordBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.body-small-PasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.body-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="MinHeight" Value="{DynamicResource md.sys.typescale.body-small-line-height}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.PasswordBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.body-PasswordBox" TargetType="PasswordBox" BasedOn="{StaticResource md.body-medium-PasswordBox}"/>
+
+    <Style x:Key="md.display-large-PasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.PasswordBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.display-medium-PasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.PasswordBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.display-small-PasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.brand}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.display-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.display-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.PasswordBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.display-PasswordBox" TargetType="PasswordBox" BasedOn="{StaticResource md.display-medium-PasswordBox}"/>
+
+    <Style x:Key="md.headline-large-PasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.PasswordBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.headline-medium-PasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.PasswordBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.headline-small-PasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.headline-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.headline-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.PasswordBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.headline-PasswordBox" TargetType="PasswordBox" BasedOn="{StaticResource md.headline-medium-PasswordBox}"/>
+
+    <Style x:Key="md.label-large-PasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.PasswordBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.label-medium-PasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.PasswordBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.label-small-PasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.label-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.PasswordBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.label-PasswordBox" TargetType="PasswordBox" BasedOn="{StaticResource md.label-medium-PasswordBox}"/>
+
+    <Style x:Key="md.title-large-PasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-large-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-large-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.PasswordBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.title-medium-PasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-medium-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-medium-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.PasswordBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.title-small-PasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.title-small-size}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource md.sys.typescale.title-small-weight}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource md.sys.PasswordBox.ControlTemplate}"/>
+    </Style>
+    <Style x:Key="md.title-PasswordBox" TargetType="PasswordBox" BasedOn="{StaticResource md.title-medium-PasswordBox}"/>
+
+    <Style TargetType="PasswordBox" BasedOn="{StaticResource md.body-PasswordBox}"/>
+
     <!-- RichTextBox -->
 
     <Style x:Key="md.body-large-RichTextBox" TargetType="RichTextBox">
