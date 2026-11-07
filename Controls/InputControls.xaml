@@ -22,6 +22,17 @@
         <Setter Property="Margin" Value="4"/>
         <Setter Property="MinWidth" Value="120"/>
     </Style>
+    <!-- Color Picker -->
+    <Style x:Key="md.ColorPicker" TargetType="md:ColorPicker">
+        <Setter Property="Background" Value="{DynamicResource surfaceContainerLowBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onSurfaceBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource outlineBrush}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-medium-size}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="MinWidth" Value="120"/>
+    </Style>
     <!-- Password Input -->
     <Style x:Key="md.PasswordInput" TargetType="md:PasswordInput">
         <Setter Property="Background" Value="{DynamicResource surfaceContainerBrush}"/>

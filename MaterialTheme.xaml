@@ -70,6 +70,7 @@
     <Style TargetType="ListBox" BasedOn="{StaticResource md.ListBox}"/>
     <Style TargetType="md:SearchBox" BasedOn="{StaticResource md.SearchBox}"/>
     <Style TargetType="md:TextInput" BasedOn="{StaticResource md.TextInput}"/>
+    <Style TargetType="md:ColorPicker" BasedOn="{StaticResource md.ColorPicker}"/>
     <Style TargetType="md:PasswordInput" BasedOn="{StaticResource md.PasswordInput}"/>
     <!-- Borders -->
     <Style x:Key="FilledCard" TargetType="Border" BasedOn="{StaticResource FilledCard}">

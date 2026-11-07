@@ -3,82 +3,418 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:DariuszLabaj.MaterialTheme.Wpf.Controls"
              x:Name="Root"
              MinWidth="220"
+             d:Background="{DynamicResource surfaceContainerBrush}"
              mc:Ignorable="d">
+    <UserControl.Template>
+        <ControlTemplate TargetType="{x:Type UserControl}">
+            <ContentPresenter
+                Content="{TemplateBinding Content}"
+                ContentTemplate="{TemplateBinding ContentTemplate}"
+                ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+        </ControlTemplate>
+    </UserControl.Template>
     <UserControl.Resources>
-        <SolidColorBrush x:Key="PrimaryBrush" Color="#6750A4"/>
-        <SolidColorBrush x:Key="OutlineBrush" Color="#79747E"/>
-        <Style x:Key="SwatchStyle" TargetType="Button">
-            <Setter Property="Width" Value="26"/>
-            <Setter Property="Height" Value="26"/>
-            <Setter Property="BorderBrush" Value="#79747E"/>
+        <Style x:Key="ColorPickerSurfaceButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource surfaceContainerLowBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource onSurfaceBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource outlineBrush}"/>
             <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="12,9"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="7"/>
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="12"
+                                SnapsToDevicePixels="True">
+                            <Grid>
+                                <Border x:Name="StateLayer"
+                                        Background="{TemplateBinding Foreground}"
+                                        CornerRadius="12"
+                                        Opacity="0"
+                                        IsHitTestVisible="False"/>
+                                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  RecognizesAccessKey="True"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="StateLayer" Property="Opacity" Value="0.08"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="StateLayer" Property="Opacity" Value="0.12"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+                                <Setter TargetName="ButtonBorder" Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.38"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="ColorPickerSwatchButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="28"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource outlineVariantBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="SwatchBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8"
+                                SnapsToDevicePixels="True">
+                            <Grid>
+                                <Border x:Name="StateLayer"
+                                        Background="{DynamicResource onSurfaceBrush}"
+                                        CornerRadius="7"
+                                        Opacity="0"
+                                        IsHitTestVisible="False"/>
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="SwatchBorder" Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+                                <Setter TargetName="SwatchBorder" Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="SwatchBorder" Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+                                <Setter TargetName="SwatchBorder" Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="StateLayer" Property="Opacity" Value="0.16"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="SwatchBorder" Property="Opacity" Value="0.38"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ColorPickerHueSliderStyle" TargetType="Slider">
+            <Setter Property="Focusable" Value="True"/>
+            <Setter Property="IsMoveToPointEnabled" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Slider">
+                        <Grid SnapsToDevicePixels="True">
+                            <Border Height="8" VerticalAlignment="Center" CornerRadius="4">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Color="#FFFF0000" Offset="0"/>
+                                        <GradientStop Color="#FFFFFF00" Offset="0.167"/>
+                                        <GradientStop Color="#FF00FF00" Offset="0.333"/>
+                                        <GradientStop Color="#FF00FFFF" Offset="0.5"/>
+                                        <GradientStop Color="#FF0000FF" Offset="0.667"/>
+                                        <GradientStop Color="#FFFF00FF" Offset="0.833"/>
+                                        <GradientStop Color="#FFFF0000" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                            <Track x:Name="PART_Track"
+                                   Margin="8,0"
+                                   IsDirectionReversed="{TemplateBinding IsDirectionReversed}">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="Slider.DecreaseLarge"
+                                                  Focusable="False"
+                                                  IsTabStop="False"
+                                                  Opacity="0"/>
+                                </Track.DecreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb Width="20"
+                                           Height="20"
+                                           Background="{DynamicResource surfaceContainerLowestBrush}"
+                                           BorderBrush="{DynamicResource primaryBrush}"
+                                           Cursor="Hand">
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Ellipse Fill="{TemplateBinding Background}"
+                                                         Stroke="{TemplateBinding BorderBrush}"
+                                                         StrokeThickness="2"/>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="Slider.IncreaseLarge"
+                                                  Focusable="False"
+                                                  IsTabStop="False"
+                                                  Opacity="0"/>
+                                </Track.IncreaseRepeatButton>
+                            </Track>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="PART_Track" Property="Opacity" Value="0.38"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ColorPickerEditorTextBoxStyle" TargetType="TextBox">
+            <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+            <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-large-size}"/>
+            <Setter Property="Foreground" Value="{DynamicResource onSurfaceBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource surfaceContainerHighestBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource outlineBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="12,9"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="CaretBrush" Value="{DynamicResource primaryBrush}"/>
+            <Setter Property="SelectionBrush" Value="{DynamicResource primaryContainerBrush}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="TextBoxBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Margin="{TemplateBinding Padding}"
+                                          VerticalAlignment="Center"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="TextBoxBorder" Property="BorderBrush" Value="{DynamicResource primaryBrush}"/>
+                                <Setter TargetName="TextBoxBorder" Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="TextBoxBorder" Property="Opacity" Value="0.38"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ColorPickerActionButtonStyle" TargetType="Button" BasedOn="{StaticResource ColorPickerSurfaceButtonStyle}">
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+            <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.label-large-size}"/>
+        </Style>
     </UserControl.Resources>
-    <Grid>
-        <Button x:Name="OpenButton" Click="OpenButton_Click" Padding="12 9" Background="White" BorderBrush="{StaticResource OutlineBrush}" BorderThickness="1">
+    <Grid Background="Transparent">
+        <Button x:Name="OpenButton"
+                Style="{StaticResource ColorPickerSurfaceButtonStyle}"
+                Foreground="{Binding Foreground, ElementName=Root}"
+                BorderBrush="{Binding BorderBrush, ElementName=Root}"
+                BorderThickness="{Binding BorderThickness, ElementName=Root}"
+                Click="OpenButton_Click" 
+                IsEnabled="{Binding IsEnabled, ElementName=Root}"
+                AutomationProperties.Name="{Binding Label, ElementName=Root}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="32"/>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Border x:Name="SelectedSwatch" Width="24" Height="24" CornerRadius="6" BorderBrush="{StaticResource OutlineBrush}" BorderThickness="1" Background="#6750A4"/>
-                <StackPanel Grid.Column="1" Margin="10 0 0 0">
-                    <TextBlock Text="{Binding Label, ElementName=Root}" FontSize="11"/>
-                    <TextBlock x:Name="SelectedHexText" Text="#6750A4" FontSize="14"/>
+                <Border x:Name="SelectedSwatch" 
+                        Width="26" Height="26" 
+                        CornerRadius="8" 
+                        BorderBrush="{StaticResource outlineVariantBrush}"
+                        BorderThickness="1" 
+                        Background="#6750A4"
+                        VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Margin="8 0 0 0" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Label, ElementName=Root}"
+                               Foreground="{DynamicResource onSurfaceVariantBrush}"
+                               FontFamily="{DynamicResource md.ref.typeface.plain}"
+                               FontSize="{DynamicResource md.sys.typescale.label-small-size}"/>
+                    <TextBlock x:Name="SelectedHexText"
+                               Text="#6750A4"
+                               Foreground="{DynamicResource onSurfaceBrush}"
+                               FontFamily="{DynamicResource md.ref.typeface.plain}"
+                               FontSize="{DynamicResource md.sys.typescale.body-medium-size}"
+                               FontWeight="{DynamicResource md.sys.typescale.body-medium-weight}"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="⌄" FontSize="18" Margin="8 0 0 0"/>
+                <Viewbox Grid.Column="2" VerticalAlignment="Center" Width="36">
+                    <Canvas Width="960" Height="960" Background="Transparent">
+                        <Path Stroke="Black" StrokeThickness="1" Fill="{DynamicResource onSurfaceVariantBrush}"  Data="M464-376 306-533q-2-2-3.5-4.76-1.5-2.77-1.5-5.92 0-6.32 4.13-10.82 4.12-4.5 10.87-4.5h328q6.75 0 10.88 4.64 4.12 4.63 4.12 10.81 0 1.55-5 10.55L496-376q-3 3-7.06 5t-8.94 2q-4.87 0-8.94-2-4.06-2-7.06-5Z">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <TranslateTransform X="-0" Y="960" />
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Canvas>
+                </Viewbox>
             </Grid>
         </Button>
-        <Popup x:Name="PickerPopup" PlacementTarget="{Binding ElementName=OpenButton}" Placement="Bottom" AllowsTransparency="True" PopupAnimation="Fade" Closed="PickerPopup_Closed" StaysOpen="False">
-            <Border Background="#FFFEFF" BorderBrush="{StaticResource OutlineBrush}" BorderThickness="1" CornerRadius="16" Padding="16" Margin="0 6 8 8" Width="310">
+        <Popup x:Name="PickerPopup"
+               PlacementTarget="{Binding ElementName=OpenButton}"
+               Placement="Bottom"
+               AllowsTransparency="True"
+               PopupAnimation="Fade"
+               Closed="PickerPopup_Closed" StaysOpen="False">
+            <Border Width="328"
+                    Margin="0 6 8 8"
+                    Padding="16"
+                    Background="{DynamicResource surfaceContainerLowBrush}"
+                    BorderBrush="{DynamicResource outlineVariantBrush}"
+                    BorderThickness="1"
+                    CornerRadius="16"
+                    SnapsToDevicePixels="True">
+                <Border.Effect>
+                    <DropShadowEffect Color="{DynamicResource scrim}"
+                                      BlurRadius="18" ShadowDepth="4" Direction="270" Opacity="0.18"/>
+                </Border.Effect>
                 <StackPanel>
-                    <DockPanel Margin="0 0 0 14">
-                        <TextBlock Text="Wybierz kolor" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                        <Border x:Name="PreviewSwatch" Width="30" Height="30" CornerRadius="8" BorderBrush="{StaticResource OutlineBrush}" BorderThickness="1" Background="#6450A4" DockPanel.Dock="Right"/>
+                    <DockPanel Margin="0 0 0 14" LastChildFill="True">
+                        <Border x:Name="PreviewSwatch"
+                                Width="36" Height="36"
+                                CornerRadius="10"
+                                BorderBrush="{DynamicResource outlineVariantBrush}"
+                                BorderThickness="1"
+                                Background="#6450A4"
+                                DockPanel.Dock="Right"/>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Wybierz kolor"
+                                       Foreground="{DynamicResource onSurfaceBrush}"
+                                       FontFamily="{DynamicResource md.ref.typeface.plain}"
+                                       FontSize="{DynamicResource md.sys.typescale.title-medium-size}"
+                                       FontWeight="{DynamicResource md.sys.typescale.title-medium-weight}"/>
+                            <TextBlock Text="Wybierz kolor lub wpisz wartość HEX"
+                                       Foreground="{DynamicResource onSurfaceVariantBrush}"
+                                       FontFamily="{DynamicResource md.ref.typeface.plain}"
+                                       FontSize="{DynamicResource md.sys.typescale.body-small-size}"
+                                       Margin="0,2,8,0"/>
+                        </StackPanel>
                     </DockPanel>
-                    <TextBlock Text="Kolory podstawowe" FontWeight="SemiBold" Margin="0 0 0 6"/>
-                    <UniformGrid x:Name="PaletteGrid" Columns="8" Margin="-3 0 -3 10"/>
-                    <TextBlock Text="Nasycenie i jasność" FontWeight="SemiBold" Margin="0 0 0 6"/>
-                    <Grid Height="142" ClipToBounds="True">
-                        <Canvas x:Name="SvCanvas" Background="#6750A4" MouseLeftButtonDown="SvCanvas_MouseLeftButtonDown" MouseMove="SvCanvas_MouseMove" MouseLeftButtonUp="SvCanvas_MouseLeftButtonUp">
-                            <Rectangle IsHitTestVisible="False" Width="280" Height="142">
-                                <Rectangle.Fill>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="White" Offset="0"/>
-                                        <GradientStop Color="#00FFFFFF" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Rectangle.Fill>
-                            </Rectangle>
-                            <Rectangle IsHitTestVisible="False" Width="280" Height="142">
-                                <Rectangle.Fill>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0, 1">
-                                        <GradientStop Color="#00000000" Offset="0"/>
-                                        <GradientStop Color="Black" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Rectangle.Fill>
-                            </Rectangle>
-                            <Ellipse x:Name="SvMarker" Width="14" Height="14" Stroke="White" StrokeThickness="2" Fill="Transparent" IsHitTestVisible="False"/>
+                    <TextBlock Text="Palette"
+                               Foreground="{DynamicResource onSurfaceVariantBrush}"
+                               FontFamily="{DynamicResource md.ref.typeface.plain}"
+                               FontSize="{DynamicResource md.sys.typescale.label-large-size}"
+                               Margin="0,0,0,6"/>
+                    <UniformGrid x:Name="PaletteGrid" Columns="8" Margin="-3 0 -3 14"/>
+                    <TextBlock Text="Nasycenie i jasność"
+                               Foreground="{DynamicResource onSurfaceVariantBrush}"
+                               FontFamily="{DynamicResource md.ref.typeface.plain}"
+                               FontSize="{DynamicResource md.sys.typescale.label-large-size}"
+                               Margin="0 0 0 6"/>
+                    <Grid x:Name="SvSurface"
+                          Height="148"
+                          ClipToBounds="True"
+                          Background="#6750A4">
+                        <Border IsHitTestVisible="False">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Color="White" Offset="0"/>
+                                    <GradientStop Color="#00FFFFFF" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <Border IsHitTestVisible="False">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="#00000000" Offset="0"/>
+                                    <GradientStop Color="Black" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <Canvas x:Name="SvCanvas"
+                                Background="Transparent"
+                                Focusable="True"
+                                Cursor="Cross"
+                                MouseLeftButtonDown="SvCanvas_MouseLeftButtonDown"
+                                MouseMove="SvCanvas_MouseMove"
+                                MouseLeftButtonUp="SvCanvas_MouseLeftButtonUp"
+                                LostMouseCapture="SvCanvas_LostMouseCapture"
+                                KeyDown="SvCanvas_KeyDown"
+                                SizeChanged="SvCanvas_SizeChanged">
+                            <Ellipse x:Name="SvMarker"
+                                     Width="16" Height="16"
+                                     Stroke="White"
+                                     StrokeThickness="2"
+                                     Fill="#22000000"
+                                     IsHitTestVisible="False">
+                                <Ellipse.Effect>
+                                    <DropShadowEffect BlurRadius="2" ShadowDepth="1" Opacity="0.6"/>
+                                </Ellipse.Effect>
+                            </Ellipse>
                         </Canvas>
                     </Grid>
-                    <TextBlock Text="Odcień" FontWeight="SemiBold" Margin="0 12 0 4"/>
-                    <Slider x:Name="HueSlide" Minimum="0" Maximum="359" Value="267" ValueChanged="HueSlide_ValueChanged"/>
-                    <TextBlock Text="HEX" FontWeight="SemiBold" Margin="0 10 0 4"/>
-                    <TextBox x:Name="HexTextBox" Text="#6750A4" MaxLength="7" Padding="10 8" BorderBrush="{StaticResource OutlineBrush}" BorderThickness="1" TextChanged="HexTextBox_TextChanged"/>
-                    <TextBlock x:Name="HexErrorText" Text="Wpisz kolor w formacie #RRGGBB." Foreground="#B3261E" FontSize="11" Margin="0 4 0 0" Visibility="Collapsed"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 18 0 0">
-                        <Button Content="Anuluj" Click="CancelButton_Click" Padding="16 8" Margin="0 0 8 0" Background="Transparent" BorderThickness="0"/>
-                        <Button Content="Wybierz" Click="ConfirmButton_Click" Padding="18 8" Background="{StaticResource PrimaryBrush}" Foreground="White" BorderThickness="0"/>
+                    <DockPanel Margin="0 14 0 4">
+                        <TextBlock Text="Hue"
+                                   Foreground="{DynamicResource onSurfaceVariantBrush}"
+                                   FontFamily="{DynamicResource md.ref.typeface.plain}"
+                                   FontSize="{DynamicResource md.sys.typescale.label-large-size}"
+                                   VerticalAlignment="Center"/>
+                        <TextBlock Text="0°–359°"
+                                   Foreground="{DynamicResource onSurfaceVariantBrush}"
+                                   FontFamily="{DynamicResource md.ref.typeface.plain}"
+                                   FontSize="{DynamicResource md.sys.typescale.label-small-size}"
+                                   VerticalAlignment="Center"
+                                   DockPanel.Dock="Right"/>
+                    </DockPanel>
+                    <Slider x:Name="HueSlide"
+                            Style="{StaticResource ColorPickerHueSliderStyle}"
+                            Minimum="0" Maximum="359"
+                            Value="267"
+                            Height="28"
+                            Margin="0 0 0 8"
+                            Foreground="{DynamicResource primaryBrush}"
+                            ValueChanged="HueSlide_ValueChanged"/>
+                    <TextBlock Text="HEX"
+                               Foreground="{DynamicResource onSurfaceVariantBrush}"
+                               FontFamily="{DynamicResource md.ref.typeface.plain}"
+                               FontSize="{DynamicResource md.sys.typescale.label-large-size}"
+                               Margin="0 0 0 6"/>
+                    <TextBox x:Name="HexTextBox"
+                             Style="{StaticResource ColorPickerEditorTextBoxStyle}"
+                             Text="#6750A4"
+                             MaxLength="7"
+                             CharacterCasing="Upper"
+                             AutomationProperties.Name="Wartość koloru HEX"
+                             TextChanged="HexTextBox_TextChanged"/>
+                    <TextBlock x:Name="HexErrorText"
+                               Text="Wpisz kolor w formacie #RRGGBB."
+                               Foreground="{DynamicResource errorBrush}"
+                               FontFamily="{DynamicResource md.ref.typeface.plain}"
+                               FontSize="{DynamicResource md.sys.typescale.body-small-size}"
+                               Margin="0 5 0 0"
+                               Visibility="Collapsed"/>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Margin="0 18 0 0">
+                        <Button Content="Anuluj"
+                                Style="{StaticResource ColorPickerActionButtonStyle}"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Click="CancelButton_Click"
+                                Margin="0 0 8 0"/>
+                        <Button Content="Wybierz"
+                                Style="{StaticResource ColorPickerActionButtonStyle}"
+                                Background="{DynamicResource primaryBrush}"
+                                Foreground="{DynamicResource onPrimaryBrush}"
+                                BorderBrush="{DynamicResource primaryBrush}"
+                                Click="ConfirmButton_Click"/>
                     </StackPanel>
                 </StackPanel>
             </Border>

@@ -33,6 +33,7 @@ The icons used in this repository are sourced and converted from Google Fonts Ic
   - `TextInput`
   - `PasswordInput`
   - `SearchBox`
+  - `ColorPicker`
 - Material-style cards.
 - Material Icons in multiple variants:
   - Outlined
@@ -124,6 +125,19 @@ For example:
 ```
 
 No explicit style is required for these controls when the global theme is active.
+
+### Color Picker
+
+`ColorPicker` exposes `SelectedColor` as a two-way-bindable HEX string in `#RRGGBB` format. The value is applied only after the user confirms the selection.
+
+```xml
+<md:ColorPicker
+    xmlns:md="clr-namespace:DariuszLabaj.MaterialTheme.Wpf.Controls"
+    Label="Accent color"
+    SelectedColor="{Binding AccentColor, Mode=TwoWay}" />
+```
+
+The control uses the active Material color scheme and typography resources. Its editing popup supports the predefined palette, saturation/brightness selection, hue selection, and direct HEX entry.
 
 ## Theme Architecture
 

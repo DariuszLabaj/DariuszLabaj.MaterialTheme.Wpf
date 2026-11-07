@@ -1,69 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Automation;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DariuszLabaj.MaterialTheme.Wpf.Controls
 {
     /// <summary>
-    /// Interaction logic for ColorPicker.xaml
+    /// A Material 3 color picker with a transactional editing popup.
+    /// SelectedColor remains a #RRGGBB string for backwards compatibility.
     /// </summary>
     public partial class ColorPicker : UserControl
     {
+        private const string DefaultColor = "#6750A4";
         private static readonly string[] Palette =
         {
-            "#B3261E", "#BA1A1A", "#E65100", "#F9A825", "#2E7D32", "#006A60", "#0061A4", "#6750A4",
-            "#9A25AE", "#C2185B", "#5D4037", "#546E7A", "#000000", "#49454F", "#79747E", "#FFFFFF"
+            "#B3261E", "#BA1A1A", "#E65100", "#F9A825",
+            "#2E7D32", "#006A60", "#0061A4", "#6750A4",
+            "#9A25AE", "#C2185B", "#5D4037", "#546E7A",
+            "#000000", "#49454F", "#79747E", "#FFFFFF"
         };
-        private bool _updating;
-        private bool _dragging;
-        private bool _hexValid = true;
-        private string _workingColor = "#6750A4";
-        private string _openingColor = "#6750A4";
-        private double _hue = 267, _saturation = 0.51, _value = 0.64;
+        private bool _isSynchronizing;
+        private bool _isDragging;
+        private bool _isHexValid = true;
+        private string _workingColor = DefaultColor;
+        private string _openingColor = DefaultColor;
+        private double _hue = 267;
+        private double _saturation = 0.51;
+        private double _value = 0.64;
         public ColorPicker()
         {
             InitializeComponent();
-            foreach (string hex in Palette)
-            {
-                var button = new Button
-                {
-                    Style = (Style)Resources["SwatchStyle"],
-                    Background = new SolidColorBrush(ParseColor(hex)),
-                    Tag = hex,
-                    ToolTip = hex
-                };
-                button.Click += PaletteButton_Click;
-            }
-            SetWorkingColor(SelectedColor, true);
+            BuildPalette();
+            UpdateSelectedDisplay(SelectedColor);
+            SetWorkingColor(SelectedColor, updateHex: true);
         }
-        public static readonly DependencyProperty SelectedColorProperty = DependencyProperty.Register(nameof(SelectedColor), typeof(string), typeof(ColorPicker), new FrameworkPropertyMetadata("#6750A4", flags:FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, propertyChangedCallback:SelectedColorChanged), IsValidHexObject);
-
-
+        public static readonly DependencyProperty SelectedColorProperty = DependencyProperty.Register(nameof(SelectedColor), typeof(string), typeof(ColorPicker), new FrameworkPropertyMetadata(DefaultColor, flags:FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, propertyChangedCallback:SelectedColorChanged), IsValidHexObject);
+        /// <summary>
+        /// Gets or sets the selected color in #RRGGBB format.
+        /// </summary>
         public string SelectedColor
         {
             get => (string)GetValue(SelectedColorProperty);
             set => SetValue(SelectedColorProperty, value);
         }
         public static readonly DependencyProperty LabelProperty = DependencyProperty.Register(nameof(Label), typeof(string), typeof(ColorPicker), new PropertyMetadata("Color"));
+        /// <summary>
+        /// Gets or sets the label displayed by the picker.
+        /// </summary>
         public string Label
         {
             get => (string)GetValue(LabelProperty);
             set => SetValue(LabelProperty, value);
         }
         public static readonly DependencyProperty IsOpenProperty = DependencyProperty.Register(nameof(IsOpen), typeof(bool), typeof(ColorPicker), new FrameworkPropertyMetadata(false, propertyChangedCallback: IsOpenChanged));
-
+        /// <summary>
+        /// Gets or sets whether the color editor popup is open.
+        /// </summary>
         public bool IsOpen
         {
             get => (bool)GetValue(IsOpenProperty);
@@ -72,22 +66,27 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
         private static bool IsValidHexObject(object value) => value is string text && IsValidHex(text);
         private static bool IsValidHex(string text)
         {
-            if (text == null || text.Length != 7 || text[0] != '#') return false;
+            if (text == null || text.Length != 7 || text[0] != '#')
+                return false;
             for (int i = 1; i < 7; i++)
-                if (!Uri.IsHexDigit(text[i])) return false;
+                if (!Uri.IsHexDigit(text[i]))
+                    return false;
             return true;
         }
-        private static void SelectedColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void SelectedColorChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
-            var picker = (ColorPicker)d;
-            picker.UpdateSelectedDisplay((string)e.NewValue);
-            if (picker.PickerPopup != null && !picker.PickerPopup.IsOpen)
-                picker.SetWorkingColor((string)e.NewValue, true);
+            var picker = (ColorPicker)dependencyObject;
+            var selectedColor = (string)e.NewValue;
+            picker.UpdateSelectedDisplay(selectedColor);
+            if (!picker.IsOpen && picker.HexTextBox != null)
+                picker.SetWorkingColor(selectedColor, updateHex: true);
 
         }
-        private static void IsOpenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void IsOpenChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
-            var picker = (ColorPicker)d;
+            var picker = (ColorPicker)dependencyObject;
+            if (picker.PickerPopup == null)
+                return;
             if ((bool)e.NewValue)
             {
                 picker._openingColor = picker.SelectedColor;
@@ -99,6 +98,25 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
                 picker.PickerPopup.IsOpen = false;
             }
         }
+        private void BuildPalette()
+        {
+            foreach (string hex in Palette)
+            {
+                var color = ParseColor(hex);
+                var button = new Button
+                {
+                    Style = (Style) FindResource("ColorPickerSwatchButtonStyle"),
+                    Background = new SolidColorBrush(color),
+                    Tag = hex,
+                    ToolTip = hex,
+                    Content = null
+                };
+
+                AutomationProperties.SetName(button, $"Wybierz kolor {hex}");
+                button.Click += PaletteButton_Click;
+                PaletteGrid.Children.Add(button);
+            }
+        }
         private void OpenButton_Click(object sender, RoutedEventArgs e) => IsOpen = true;
         private void PaletteButton_Click(object sender, RoutedEventArgs e)
         {
@@ -107,157 +125,298 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
         }
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!_hexValid || !IsValidHex(HexTextBox.Text))
+            if (!_isHexValid || !IsValidHex(HexTextBox.Text))
             {
                 HexErrorText.Visibility = Visibility.Visible;
+                HexTextBox.Focus();
+                HexTextBox.SelectAll();
                 return;
             }
-            SetCurrentValue(SelectedColorProperty, HexTextBox.Text.ToUpperInvariant());
+            string colorToApply = HexTextBox.Text.ToUpperInvariant();
+            SetCurrentValue(SelectedColorProperty, colorToApply);
+            _openingColor = colorToApply;
             IsOpen = false;
+            OpenButton.Focus();
         }
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             SetWorkingColor(_openingColor, true);
             IsOpen = false;
+            OpenButton.Focus();
         }
 
 
-        private void PickerPopup_Closed(object sender, EventArgs e)
+        private void PickerPopup_Closed(object? sender, EventArgs e)
         {
-            if (IsOpen) SetCurrentValue(IsOpenProperty, false);
+            if (IsOpen)
+                SetCurrentValue(IsOpenProperty, false);
         }
         private void HexTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (_updating || HexTextBox == null) return;
-            _hexValid = IsValidHex(HexTextBox.Text);
-            HexErrorText.Visibility = _hexValid ? Visibility.Collapsed : Visibility.Visible;
-            if (_hexValid) SetWorkingColor(HexErrorText.Text, false);
+            if (_isSynchronizing || HexTextBox == null)
+                return;
+            _isHexValid = IsValidHex(HexTextBox.Text);
+            if (HexErrorText != null)
+                HexErrorText.Visibility = _isHexValid ? Visibility.Collapsed : Visibility.Visible;
+            if (_isHexValid)
+                SetWorkingColor(HexTextBox.Text, false);
         }
         private void HueSlide_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (_updating || SvCanvas == null) return;
-            _hue = HueSlide.Value;
+            if (_isSynchronizing || SvSurface == null) 
+                return;
+            _hue = e.NewValue;
             UpdateSvBackground();
             UpdateWorkingFromHsv();
         }
 
         private void SvCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            _dragging = true;
+            _isDragging = true;
             SvCanvas.CaptureMouse();
+            SvCanvas.Focus();
             UpdateSvFromPointer(e.GetPosition(SvCanvas));
+            e.Handled = true;
         }
 
         private void SvCanvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_dragging && e.LeftButton == MouseButtonState.Pressed)
+            if (_isDragging && e.LeftButton == MouseButtonState.Pressed)
                 UpdateSvFromPointer(e.GetPosition(SvCanvas));
         }
 
         private void SvCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            _dragging = false;
-            SvCanvas.ReleaseMouseCapture();
+            if (!_isDragging)
+                return;
             UpdateSvFromPointer(e.GetPosition(SvCanvas));
+            _isDragging = false;
+            SvCanvas.ReleaseMouseCapture();
+            e.Handled = true;
+        }
+        private void SvCanvas_LostMouseCapture(object sender, MouseEventArgs e)
+        {
+            _isDragging = false;
+        }
+        private void SvCanvas_KeyDown(object sender, KeyEventArgs e)
+        {
+            double step = (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift ? 0.05 : 0.01;
+            bool handled = true;
+
+            switch (e.Key)
+            {
+                case Key.Left:
+                    _saturation -= step;
+                    break;
+                case Key.Right:
+                    _saturation += step;
+                    break;
+                case Key.Up:
+                    _value += step;
+                    break;
+                case Key.Down:
+                    _value -= step;
+                    break;
+                default:
+                    handled = false;
+                    break;
+            }
+
+            if (!handled)
+                return;
+
+            _saturation = Clamp(_saturation, 0, 1);
+            _value = Clamp(_value, 0, 1);
+            UpdateWorkingFromHsv();
+            e.Handled = true;
+        }
+        private void SvCanvas_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            PositionMarker();
         }
         private void UpdateSvFromPointer(Point point)
         {
             _saturation = Clamp(point.X / Math.Max(1, SvCanvas.ActualWidth), 0, 1);
             _value = 1 - Clamp(point.Y / Math.Max(1, SvCanvas.ActualHeight), 0, 1);
-            PositionMarker();
             UpdateWorkingFromHsv();
         }
         private void SetWorkingColor(string hex, bool updateHex)
         {
-            if (!IsValidHex(hex)) return;
+            if (!IsValidHex(hex))
+                return;
             _workingColor = hex.ToUpperInvariant();
             ColorToHsv(ParseColor(_workingColor), out _hue, out _saturation, out _value);
-            _updating = true;
+            _isSynchronizing = true;
             try
             {
-                if (HueSlide != null) HueSlide.Value = _hue;
-                if (updateHex && HexTextBox != null) HexTextBox.Text = _workingColor;
-                if (HexErrorText != null) HexErrorText.Visibility = Visibility.Collapsed;
-                _hexValid = true;
-                if (SvCanvas != null) UpdateSvBackground();
+                if (HueSlide != null)
+                    HueSlide.Value = _hue;
+                if (updateHex && HexTextBox != null)
+                    HexTextBox.Text = _workingColor;
+                if (HexErrorText != null)
+                    HexErrorText.Visibility = Visibility.Collapsed;
+                _isHexValid = true;
+                UpdateSvBackground();
                 PositionMarker();
                 UpdatePreview();
+                UpdatePaletteSelection();
             }
             finally
             {
-                _updating = false;
+                _isSynchronizing = false;
             }
         }
         private void UpdateWorkingFromHsv()
         {
             _workingColor = ColorToHex(HsvToColor(_hue, _saturation, _value));
-            _updating = true;
+            _isSynchronizing = true;
             try
             {
-                HexTextBox.Text = _workingColor;
-                HexErrorText.Visibility = Visibility.Collapsed;
-                _hexValid = true;
+                if (HexTextBox != null)
+                    HexTextBox.Text = _workingColor;
+                if (HexErrorText != null)
+                    HexErrorText.Visibility = Visibility.Collapsed;
+                _isHexValid = true;
                 UpdatePreview();
+                UpdatePaletteSelection();
                 PositionMarker();
             }
             finally
             {
-                _updating = false;
+                _isSynchronizing = false;
             }
         }
         private void UpdateSvBackground()
         {
-            SvCanvas.Background = new SolidColorBrush(HsvToColor(_hue, 1, 1));
+            if (SvSurface != null)
+                SvSurface.Background = new SolidColorBrush(HsvToColor(_hue, 1, 1));
         }
         private void PositionMarker()
         {
-            if (SvMarker is null || SvCanvas is null) return;
-            Canvas.SetLeft(SvMarker, Clamp(_saturation * SvCanvas.ActualWidth - SvMarker.Width / 2, 0, Math.Max(0, SvCanvas.ActualWidth - SvMarker.Width)));
-            Canvas.SetTop(SvMarker, Clamp((1 - _value) * SvCanvas.ActualHeight - SvMarker.Height / 2, 0, Math.Max(0, SvCanvas.ActualHeight - SvMarker.Height)));
+            if (SvMarker is null || SvCanvas is null)
+                return;
+
+            double markerRadius = SvMarker.Width / 2;
+            double left = _saturation * SvCanvas.ActualWidth - markerRadius;
+            double top = (1 - _value) * SvCanvas.ActualHeight - markerRadius;
+
+            Canvas.SetLeft(SvMarker, Clamp(left, 0, Math.Max(0, SvCanvas.ActualWidth - SvMarker.Width)));
+            Canvas.SetTop(SvMarker, Clamp(top, 0, Math.Max(0, SvCanvas.ActualHeight - SvMarker.Height)));
         }
         private void UpdatePreview()
         {
             if (PreviewSwatch != null)
                 PreviewSwatch.Background = new SolidColorBrush(ParseColor(_workingColor));
-            if (SvCanvas != null)
-                SvCanvas.Background = new SolidColorBrush(HsvToColor(_hue, 1, 1));
         }
-        private void UpdateSelectedDisplay(string hex)
+        private void UpdatePaletteSelection()
         {
-            if (!IsValidHex(hex)) return;
-            if (SelectedHexText != null) SelectedHexText.Text = hex;
-            if (SelectedSwatch != null) SelectedSwatch.Background = new SolidColorBrush(ParseColor(hex));
+            if (PaletteGrid == null)
+                return;
+
+            foreach (UIElement element in PaletteGrid.Children)
+            {
+                if (element is not Button button || button.Tag is not string hex)
+                    continue;
+
+                bool isSelected = string.Equals(hex, _workingColor, StringComparison.OrdinalIgnoreCase);
+                button.Content = isSelected? "✓" : null;
+                button.Foreground = GetReadableForeground(ParseColor(hex));
+                button.BorderThickness = isSelected? new Thickness(2) : new Thickness(1);
+                button.SetResourceReference(
+                    Control.BorderBrushProperty,
+                    isSelected? "primaryBrush" : "outlineVariantBrush");
+            }
         }
-        private static Color ParseColor(string hex) => (Color)ColorConverter.ConvertFromString(hex);
+private void UpdateSelectedDisplay(string hex)
+        {
+            if (!IsValidHex(hex))
+                return;
+            if (SelectedHexText != null)
+                SelectedHexText.Text = hex;
+            if (SelectedSwatch != null)
+                SelectedSwatch.Background = new SolidColorBrush(ParseColor(hex));
+        }
+        private static Brush GetReadableForeground(Color backgroundColor)
+        {
+            double luminance = (0.2126 * backgroundColor.R + 0.7152 * backgroundColor.G + 0.0722 * backgroundColor.B) / 255.0;
+            return luminance > 0.58 ? Brushes.Black : Brushes.White;
+        }
+        private static Color ParseColor(string hex)
+        {
+            byte red = byte.Parse(hex.Substring(1, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+            byte green = byte.Parse(hex.Substring(3, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+            byte blue = byte.Parse(hex.Substring(5, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+            return Color.FromRgb(red, green, blue);
+        }
         private static string ColorToHex(Color color) => string.Format(CultureInfo.InvariantCulture, "#{0:X2}{1:X2}{2:X2}", color.R, color.G, color.B);
         private static Color HsvToColor(double hue, double saturation, double value)
         {
-            hue = ((hue % 360) + 360) % 360;
-            saturation = Clamp(saturation, 0, 1);
-            value = Clamp(value, 0, 1);
-            double c = value * saturation;
-            double x = c * (1 - Math.Abs((hue / 60.0) % 2 - 1));
-            double m = value - c, r = 0, g = 0, b = 0;
-            if (hue < 60) { r = c; g = x; }
-            else if (hue < 120) { r = x; g = c; }
-            else if (hue < 180) { g = c; b = x; }
-            else if (hue < 240) { g = x; b = c; }
-            else if (hue < 300) { r = x; b = c; }
-            else { r = c; b = x; }
-            return Color.FromRgb(ToByte((r + m) * 255), ToByte((g + m) * 255), ToByte((b + m) * 255));
+            double chroma = value * saturation;
+            double intermediate = chroma * (1 - Math.Abs((hue / 60.0) % 2 - 1));
+            double offset = value - chroma;
+            double red = 0;
+            double green = 0;
+            double blue = 0;
+
+            if (hue < 60)
+            {
+                red = chroma;
+                green = intermediate;
+            }
+            else if (hue < 120)
+            {
+                red = intermediate;
+                green = chroma;
+            }
+            else if (hue < 180)
+            {
+                green = chroma;
+                blue = intermediate;
+            }
+            else if (hue < 240)
+            {
+                green = intermediate;
+                blue = chroma;
+            }
+            else if (hue < 300)
+            {
+                red = intermediate;
+                blue = chroma;
+            }
+            else
+            {
+                red = chroma;
+                blue = intermediate;
+            }
+
+            return Color.FromRgb(
+                ToByte((red + offset) * 255),
+                ToByte((green + offset) * 255),
+                ToByte((blue + offset) * 255));
         }
         private static void ColorToHsv(Color color, out double hue, out double saturation, out double value)
         {
-            double r = color.R / 255.0, g = color.G / 255.0, b = color.B / 255.0;
-            double max = Math.Max(r, Math.Max(g, b)), min = Math.Min(r, Math.Min(g, b));
-            double delta = max - min;
-            if (delta == 0) hue = 0;
-            else if (max == r) hue = 60 * (((g - b) / delta) % 6);
-            else if (max == g) hue = 60 * (((b - r) / delta) + 2);
-            else hue = 60 * (((r - g) / delta) + 4);
-            if (hue < 0) hue += 360;
-            saturation = max == 0 ? 0 : delta / max;
-            value = max;
+            double red = color.R / 255.0;
+            double green = color.G / 255.0;
+            double blue = color.B / 255.0;
+            double maximum = Math.Max(red, Math.Max(green, blue));
+            double minimum = Math.Min(red, Math.Min(green, blue));
+            double delta = maximum - minimum;
+
+            if (delta == 0)
+                hue = 0;
+            else if (maximum == red)
+                hue = 60 * (((green - blue) / delta) % 6);
+            else if (maximum == green)
+                hue = 60 * (((blue - red) / delta) + 2);
+            else
+                hue = 60 * (((red - green) / delta) + 4);
+
+            if (hue < 0)
+                hue += 360;
+
+            saturation = maximum == 0 ? 0 : delta / maximum;
+            value = maximum;
         }
         private static byte ToByte(double value) => (byte)Math.Round(Clamp(value, 0, 255));
         private static double Clamp(double value, double min, double max) => Math.Max(min, Math.Min(max, value));
