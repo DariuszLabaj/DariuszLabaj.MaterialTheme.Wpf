@@ -18,6 +18,17 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
+    <Style x:Key="md.DataGridRow" TargetType="{x:Type DataGridRow}">
+        <Setter Property="Background" Value="{DynamicResource surfaceBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource onSurfaceBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource primaryContainerBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource onPrimaryContainerBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
     <Style x:Key="md.DataGrid" TargetType="DataGrid">
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="Background" Value="{DynamicResource surfaceBrush}"/>
@@ -42,6 +53,7 @@
         <Setter Property="Padding" Value="6"/>
         <Setter Property="FontSize" Value="{DynamicResource md.sys.typescale.body-medium-size}"/>
         <Setter Property="FontFamily" Value="{DynamicResource md.ref.typeface.plain}"/>
+        <Setter Property="RowStyle" Value="{StaticResource md.DataGridRow}"/>
         <Style.Resources>
             <Style TargetType="DataGridCell" BasedOn="{StaticResource md.DataGridCell}"/>
             <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource md.DataGridColumnHeader}"/>

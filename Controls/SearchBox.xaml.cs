@@ -23,7 +23,7 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
     /// </summary>
     public partial class SearchBox : UserControl
     {
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(SearchBox), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(nameof(Text), typeof(string), typeof(SearchBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public static readonly DependencyProperty SearchPromptProperty = DependencyProperty.Register("SearchPrompt", typeof(string), typeof(SearchBox), new PropertyMetadata("Search"));
 #pragma warning disable CS0108 // Member hides inherited member; missing new keyword
         public static readonly DependencyProperty BackgroundProperty = DependencyProperty.Register("Background", typeof(Brush), typeof(SearchBox), new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));

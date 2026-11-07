@@ -2,14 +2,15 @@
                     xmlns:conv="clr-namespace:DariuszLabaj.MaterialTheme.Wpf.Converters"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ControlTemplate x:Key="md.sys.ComboBox.ControlTemplate" TargetType="ComboBox">
-        <Grid>
+        <Grid SnapsToDevicePixels="True">
             <Border x:Name="Border"
-                  CornerRadius="8"
-                  BorderBrush="{TemplateBinding BorderBrush}"
-                  BorderThickness="2"
-                  Padding="4 0 0 0"
-                  Height="{TemplateBinding FontSize, Converter={conv:ScaleConverter 2}}"
-                  Background="{TemplateBinding Background}">
+                    MinHeight="32"
+                    CornerRadius="8"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="2"
+                    Padding="4 0 0 0"
+                    Height="{TemplateBinding FontSize, Converter={conv:ScaleConverter 2}}"
+                    Background="{TemplateBinding Background}">
                 <Grid VerticalAlignment="Center" Background="Transparent">
                     <Border x:Name="StateLayer" Background="{DynamicResource 80Brush}" CornerRadius="8" Opacity="0"/>
                     <Grid Background="Transparent">
@@ -18,11 +19,14 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <ContentPresenter x:Name="ContentPresenter"
-                                      Grid.Column="0"
-                                      Margin="2 0"
-                                      VerticalAlignment="Center"
-                                      HorizontalAlignment="Left"
-                                      Content="{TemplateBinding SelectionBoxItem}">
+                                          Grid.Column="0"
+                                          Margin="2 0"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Left"
+                                          Content="{TemplateBinding SelectionBoxItem}"
+                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                          ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}">
                             <ContentPresenter.Resources>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="FontFamily" Value="{Binding FontFamily, RelativeSource={RelativeSource AncestorType=ComboBox}}"/>
@@ -76,7 +80,7 @@
                         BorderThickness="2 0 2 2"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         CornerRadius="0,0,4,4"/>
-                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                    <ScrollViewer Margin="4,6,4,6" MaxHeight="320" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" SnapsToDevicePixels="True">
                         <ItemsPresenter/>
                     </ScrollViewer>
                 </Grid>
