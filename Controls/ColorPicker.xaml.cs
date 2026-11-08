@@ -288,8 +288,8 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
         }
         private void UpdateSvBackground()
         {
-            if (SvSurface != null)
-                SvSurface.Background = new SolidColorBrush(HsvToColor(_hue, 1, 1));
+            if (SvHueLayer != null)
+                SvHueLayer.Background = new SolidColorBrush(HsvToColor(_hue, 1, 1));
         }
         private void PositionMarker()
         {

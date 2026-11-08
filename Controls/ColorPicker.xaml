@@ -31,14 +31,14 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="ButtonBorder"
+                        <Border Style="{x:Null}" x:Name="ButtonBorder"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="12"
                                 SnapsToDevicePixels="True">
                             <Grid>
-                                <Border x:Name="StateLayer"
+                                <Border Style="{x:Null}" x:Name="StateLayer"
                                         Background="{TemplateBinding Foreground}"
                                         CornerRadius="12"
                                         Opacity="0"
@@ -80,14 +80,14 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="SwatchBorder"
+                        <Border Style="{x:Null}" x:Name="SwatchBorder"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="8"
                                 SnapsToDevicePixels="True">
                             <Grid>
-                                <Border x:Name="StateLayer"
+                                <Border Style="{x:Null}" x:Name="StateLayer"
                                         Background="{DynamicResource onSurfaceBrush}"
                                         CornerRadius="7"
                                         Opacity="0"
@@ -122,7 +122,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Slider">
                         <Grid SnapsToDevicePixels="True">
-                            <Border Height="8" VerticalAlignment="Center" CornerRadius="4">
+                            <Border Style="{x:Null}" Height="8" VerticalAlignment="Center" CornerRadius="4">
                                 <Border.Background>
                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                         <GradientStop Color="#FFFF0000" Offset="0"/>
@@ -190,7 +190,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
-                        <Border x:Name="TextBoxBorder"
+                        <Border Style="{x:Null}" x:Name="TextBoxBorder"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -235,7 +235,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Border x:Name="SelectedSwatch" 
+                <Border Style="{x:Null}" x:Name="SelectedSwatch" 
                         Width="26" Height="26" 
                         CornerRadius="8" 
                         BorderBrush="{StaticResource outlineVariantBrush}"
@@ -256,7 +256,7 @@
                 </StackPanel>
                 <Viewbox Grid.Column="2" VerticalAlignment="Center" Width="36">
                     <Canvas Width="960" Height="960" Background="Transparent">
-                        <Path Stroke="Black" StrokeThickness="1" Fill="{DynamicResource onSurfaceVariantBrush}"  Data="M464-376 306-533q-2-2-3.5-4.76-1.5-2.77-1.5-5.92 0-6.32 4.13-10.82 4.12-4.5 10.87-4.5h328q6.75 0 10.88 4.64 4.12 4.63 4.12 10.81 0 1.55-5 10.55L496-376q-3 3-7.06 5t-8.94 2q-4.87 0-8.94-2-4.06-2-7.06-5Z">
+                        <Path Stroke="Black" StrokeThickness="1" Fill="{DynamicResource primaryBrush}"  Data="M464-376 306-533q-2-2-3.5-4.76-1.5-2.77-1.5-5.92 0-6.32 4.13-10.82 4.12-4.5 10.87-4.5h328q6.75 0 10.88 4.64 4.12 4.63 4.12 10.81 0 1.55-5 10.55L496-376q-3 3-7.06 5t-8.94 2q-4.87 0-8.94-2-4.06-2-7.06-5Z">
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <TranslateTransform X="-0" Y="960" />
@@ -287,7 +287,7 @@
                 </Border.Effect>
                 <StackPanel>
                     <DockPanel Margin="0 0 0 14" LastChildFill="True">
-                        <Border x:Name="PreviewSwatch"
+                        <Border Style="{x:Null}" x:Name="PreviewSwatch"
                                 Width="36" Height="36"
                                 CornerRadius="10"
                                 BorderBrush="{DynamicResource outlineVariantBrush}"
@@ -321,8 +321,9 @@
                     <Grid x:Name="SvSurface"
                           Height="148"
                           ClipToBounds="True"
-                          Background="#6750A4">
-                        <Border IsHitTestVisible="False">
+                          Background="Transparent">
+                        <Border Style="{x:Null}" x:Name="SvHueLayer" CornerRadius="12" Background="#6750A4" IsHitTestVisible="False"/>
+                        <Border Style="{x:Null}" CornerRadius="12" IsHitTestVisible="False">
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                     <GradientStop Color="White" Offset="0"/>
@@ -330,7 +331,7 @@
                                 </LinearGradientBrush>
                             </Border.Background>
                         </Border>
-                        <Border IsHitTestVisible="False">
+                        <Border Style="{x:Null}" CornerRadius="12" IsHitTestVisible="False">
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                                     <GradientStop Color="#00000000" Offset="0"/>
@@ -340,6 +341,7 @@
                         </Border>
                         <Canvas x:Name="SvCanvas"
                                 Background="Transparent"
+                                ClipToBounds="True"
                                 Focusable="True"
                                 Cursor="Cross"
                                 MouseLeftButtonDown="SvCanvas_MouseLeftButtonDown"
@@ -409,12 +411,14 @@
                                 BorderThickness="0"
                                 Click="CancelButton_Click"
                                 Margin="0 0 8 0"/>
-                        <Button Content="Wybierz"
-                                Style="{StaticResource ColorPickerActionButtonStyle}"
+                        <Button Style="{StaticResource ColorPickerActionButtonStyle}"
                                 Background="{DynamicResource primaryBrush}"
-                                Foreground="{DynamicResource onPrimaryBrush}"
                                 BorderBrush="{DynamicResource primaryBrush}"
-                                Click="ConfirmButton_Click"/>
+                                Click="ConfirmButton_Click">
+                            <Button.Content>
+                                <TextBlock Text="Wybierz" Foreground="{DynamicResource onPrimaryBrush}"/>
+                            </Button.Content>
+                        </Button>
                     </StackPanel>
                 </StackPanel>
             </Border>
