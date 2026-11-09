@@ -321,7 +321,7 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
             UpdatePreview();
             UpdatePaletteSelection();
             if (hasChanged && raisePreviewEvent)
-                RaiseColorChanged(PreviewColorChangedEvent, newColor, newColor, PreviewColorChangedCommand);
+                RaiseColorChanged(PreviewColorChangedEvent, previousColor, newColor, PreviewColorChangedCommand);
         }
         private void RaiseColorChanged(RoutedEvent routedEvent, string oldColor, string newColor, ICommand? command)
         {
