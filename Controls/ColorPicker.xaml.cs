@@ -15,17 +15,15 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
     {
         private const string DefaultColor = "#6750A4";
         private static readonly string[] Palette =
-        {
+        [
             "#B3261E", "#BA1A1A", "#E65100", "#F9A825",
             "#2E7D32", "#006A60", "#0061A4", "#6750A4",
             "#9A25AE", "#C2185B", "#5D4037", "#546E7A",
             "#000000", "#49454F", "#79747E", "#FFFFFF"
-        };
+        ];
         private bool _isSynchronizing;
         private bool _isDragging;
         private bool _isHexValid = true;
-        private string _workingColor = DefaultColor;
-        private string _openingColor = DefaultColor;
         private double _hue = 267;
         private double _saturation = 0.51;
         private double _value = 0.64;
@@ -34,9 +32,29 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
             InitializeComponent();
             BuildPalette();
             UpdateSelectedDisplay(SelectedColor);
-            SetWorkingColor(SelectedColor, updateHex: true);
+            SetWorkingColor(SelectedColor, updateHex: true, raisePreviewEvent: false);
         }
-        public static readonly DependencyProperty SelectedColorProperty = DependencyProperty.Register(nameof(SelectedColor), typeof(string), typeof(ColorPicker), new FrameworkPropertyMetadata(DefaultColor, flags:FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, propertyChangedCallback:SelectedColorChanged), IsValidHexObject);
+        public static readonly DependencyProperty SelectedColorProperty = DependencyProperty.Register(nameof(SelectedColor), typeof(string), typeof(ColorPicker), new FrameworkPropertyMetadata(DefaultColor, flags:FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, propertyChangedCallback:OnSelectedColorPropertyChanged), IsValidHexObject);
+        /// <summary>
+        /// Occurs when the committed SelectedColor value changes.
+        /// The event bubbles through the WPF element tree.
+        /// </summary>
+        public static readonly RoutedEvent SelectedColorChangedEvent = EventManager.RegisterRoutedEvent(nameof(SelectedColorChanged), RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<string>), typeof(ColorPicker));
+        public event RoutedPropertyChangedEventHandler<string> SelectedColorChanged
+        {
+            add => AddHandler(SelectedColorChangedEvent, value);
+            remove => RemoveHandler(SelectedColorChangedEvent, value);
+        }
+        /// <summary>
+        /// Gets or sets a command executed after SelectedColor changes.
+        /// The command parameter is the new color in #RRGGBB format.
+        /// </summary>
+        public static readonly DependencyProperty SelectedColorChangedCommandProperty = DependencyProperty.Register(nameof(SelectedColorChangedCommand), typeof(ICommand), typeof(ColorPicker), new PropertyMetadata(null));
+        public ICommand? SelectedColorChangedCommand
+        {
+            get => (ICommand?)GetValue(SelectedColorChangedCommandProperty);
+            set => SetValue(SelectedColorChangedCommandProperty, value);
+        }
         /// <summary>
         /// Gets or sets the selected color in #RRGGBB format.
         /// </summary>
@@ -44,6 +62,21 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
         {
             get => (string)GetValue(SelectedColorProperty);
             set => SetValue(SelectedColorProperty, value);
+        }
+        private static readonly DependencyPropertyKey PreviewColorPropertyKey = DependencyProperty.RegisterReadOnly(nameof(PreviewColor), typeof(string), typeof(ColorPicker), new PropertyMetadata(DefaultColor));
+        public static readonly DependencyProperty PreviewColorProperty = PreviewColorPropertyKey.DependencyProperty;
+        public string PreviewColor => (string)GetValue(PreviewColorProperty);
+        public static readonly RoutedEvent PreviewColorChangedEvent = EventManager.RegisterRoutedEvent(nameof(PreviewColorChanged), RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<string>), typeof(ColorPicker));
+        public event RoutedPropertyChangedEventHandler<string> PreviewColorChanged
+        {
+            add => AddHandler(PreviewColorChangedEvent, value);
+            remove => RemoveHandler(PreviewColorChangedEvent, value);
+        }
+        public static readonly DependencyProperty PreviewColorChangedCommandProperty = DependencyProperty.Register(nameof(PreviewColorChangedCommand), typeof(ICommand), typeof(ColorPicker), new PropertyMetadata(null));
+        public ICommand? PreviewColorChangedCommand
+        {
+            get => (ICommand?)GetValue(PreviewColorChangedCommandProperty);
+            set => SetValue(PreviewColorChangedCommandProperty, value);
         }
         public static readonly DependencyProperty LabelProperty = DependencyProperty.Register(nameof(Label), typeof(string), typeof(ColorPicker), new PropertyMetadata("Color"));
         /// <summary>
@@ -73,14 +106,15 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
                     return false;
             return true;
         }
-        private static void SelectedColorChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
+        private static void OnSelectedColorPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
             var picker = (ColorPicker)dependencyObject;
+            var oldColor = (string)e.OldValue;
             var selectedColor = (string)e.NewValue;
             picker.UpdateSelectedDisplay(selectedColor);
             if (!picker.IsOpen && picker.HexTextBox != null)
-                picker.SetWorkingColor(selectedColor, updateHex: true);
-
+                picker.SetWorkingColor(selectedColor, updateHex: true, raisePreviewEvent: true);
+            picker.RaiseColorChanged(SelectedColorChangedEvent, oldColor, selectedColor, picker.SelectedColorChangedCommand);
         }
         private static void IsOpenChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
@@ -89,13 +123,14 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
                 return;
             if ((bool)e.NewValue)
             {
-                picker._openingColor = picker.SelectedColor;
-                picker.SetWorkingColor(picker.SelectedColor, true);
+                picker.SetWorkingColor(picker.SelectedColor, updateHex: true, raisePreviewEvent: true);
                 picker.PickerPopup.IsOpen = true;
             }
-            else if (picker.PickerPopup.IsOpen)
+            else
             {
-                picker.PickerPopup.IsOpen = false;
+                if (picker.PickerPopup.IsOpen)
+                    picker.PickerPopup.IsOpen = false;
+                picker.SetWorkingColor(picker.SelectedColor, updateHex: true, raisePreviewEvent: true);
             }
         }
         private void BuildPalette()
@@ -132,15 +167,13 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
                 HexTextBox.SelectAll();
                 return;
             }
-            string colorToApply = HexTextBox.Text.ToUpperInvariant();
+            string colorToApply = PreviewColor;
             SetCurrentValue(SelectedColorProperty, colorToApply);
-            _openingColor = colorToApply;
             IsOpen = false;
             OpenButton.Focus();
         }
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            SetWorkingColor(_openingColor, true);
             IsOpen = false;
             OpenButton.Focus();
         }
@@ -156,8 +189,7 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
             if (_isSynchronizing || HexTextBox == null)
                 return;
             _isHexValid = IsValidHex(HexTextBox.Text);
-            if (HexErrorText != null)
-                HexErrorText.Visibility = _isHexValid ? Visibility.Collapsed : Visibility.Visible;
+            HexErrorText?.Visibility = _isHexValid ? Visibility.Collapsed : Visibility.Visible;
             if (_isHexValid)
                 SetWorkingColor(HexTextBox.Text, false);
         }
@@ -240,56 +272,69 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
             _value = 1 - Clamp(point.Y / Math.Max(1, SvCanvas.ActualHeight), 0, 1);
             UpdateWorkingFromHsv();
         }
-        private void SetWorkingColor(string hex, bool updateHex)
+        private void SetWorkingColor(string hex, bool updateHex, bool raisePreviewEvent = true)
         {
             if (!IsValidHex(hex))
                 return;
-            _workingColor = hex.ToUpperInvariant();
-            ColorToHsv(ParseColor(_workingColor), out _hue, out _saturation, out _value);
+            string newColor = hex.ToUpperInvariant();
+            ColorToHsv(ParseColor(newColor), out _hue, out _saturation, out _value);
             _isSynchronizing = true;
             try
             {
-                if (HueSlide != null)
-                    HueSlide.Value = _hue;
+                HueSlide?.Value = _hue;
                 if (updateHex && HexTextBox != null)
-                    HexTextBox.Text = _workingColor;
-                if (HexErrorText != null)
-                    HexErrorText.Visibility = Visibility.Collapsed;
+                    HexTextBox.Text = newColor;
+                HexErrorText?.Visibility = Visibility.Collapsed;
                 _isHexValid = true;
                 UpdateSvBackground();
                 PositionMarker();
-                UpdatePreview();
-                UpdatePaletteSelection();
             }
             finally
             {
                 _isSynchronizing = false;
             }
+            PublishPreviewColorChanged(newColor, raisePreviewEvent);
         }
         private void UpdateWorkingFromHsv()
         {
-            _workingColor = ColorToHex(HsvToColor(_hue, _saturation, _value));
+            string newColor = ColorToHex(HsvToColor(_hue, _saturation, _value));
             _isSynchronizing = true;
             try
             {
-                if (HexTextBox != null)
-                    HexTextBox.Text = _workingColor;
-                if (HexErrorText != null)
-                    HexErrorText.Visibility = Visibility.Collapsed;
+                HexTextBox?.Text = newColor;
+                HexErrorText?.Visibility = Visibility.Collapsed;
                 _isHexValid = true;
-                UpdatePreview();
-                UpdatePaletteSelection();
                 PositionMarker();
             }
             finally
             {
                 _isSynchronizing = false;
             }
+            PublishPreviewColorChanged(newColor, raisePreviewEvent: true);
+        }
+        private void PublishPreviewColorChanged(string newColor, bool raisePreviewEvent)
+        {
+            string previousColor = PreviewColor;
+            bool hasChanged = !string.Equals(previousColor, newColor, StringComparison.OrdinalIgnoreCase);
+            if (hasChanged)
+                SetValue(PreviewColorPropertyKey, newColor);
+            UpdatePreview();
+            UpdatePaletteSelection();
+            if (hasChanged && raisePreviewEvent)
+                RaiseColorChanged(PreviewColorChangedEvent, newColor, newColor, PreviewColorChangedCommand);
+        }
+        private void RaiseColorChanged(RoutedEvent routedEvent, string oldColor, string newColor, ICommand? command)
+        {
+            if (string.Equals(oldColor, newColor, StringComparison.OrdinalIgnoreCase))
+                return;
+            var eventArgs = new RoutedPropertyChangedEventArgs<string>(oldColor, newColor, routedEvent);
+            RaiseEvent(eventArgs);
+            if (command is not null && command.CanExecute(newColor))
+                command.Execute(newColor);
         }
         private void UpdateSvBackground()
         {
-            if (SvHueLayer != null)
-                SvHueLayer.Background = new SolidColorBrush(HsvToColor(_hue, 1, 1));
+            SvHueLayer?.Background = new SolidColorBrush(HsvToColor(_hue, 1, 1));
         }
         private void PositionMarker()
         {
@@ -305,8 +350,7 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
         }
         private void UpdatePreview()
         {
-            if (PreviewSwatch != null)
-                PreviewSwatch.Background = new SolidColorBrush(ParseColor(_workingColor));
+            PreviewSwatch?.Background = new SolidColorBrush(ParseColor(PreviewColor));
         }
         private void UpdatePaletteSelection()
         {
@@ -318,7 +362,7 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
                 if (element is not Button button || button.Tag is not string hex)
                     continue;
 
-                bool isSelected = string.Equals(hex, _workingColor, StringComparison.OrdinalIgnoreCase);
+                bool isSelected = string.Equals(hex, PreviewColor, StringComparison.OrdinalIgnoreCase);
                 button.Content = isSelected? "✓" : null;
                 button.Foreground = GetReadableForeground(ParseColor(hex));
                 button.BorderThickness = isSelected? new Thickness(2) : new Thickness(1);
@@ -327,14 +371,12 @@ namespace DariuszLabaj.MaterialTheme.Wpf.Controls
                     isSelected? "primaryBrush" : "outlineVariantBrush");
             }
         }
-private void UpdateSelectedDisplay(string hex)
+        private void UpdateSelectedDisplay(string hex)
         {
             if (!IsValidHex(hex))
                 return;
-            if (SelectedHexText != null)
-                SelectedHexText.Text = hex;
-            if (SelectedSwatch != null)
-                SelectedSwatch.Background = new SolidColorBrush(ParseColor(hex));
+            SelectedHexText?.Text = hex;
+            SelectedSwatch?.Background = new SolidColorBrush(ParseColor(hex));
         }
         private static Brush GetReadableForeground(Color backgroundColor)
         {
